@@ -1,0 +1,24 @@
+body{
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(#FFC2D2, #A79EE0);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: rgb(130, 97, 137);
+}
+.toolBody{
+    display: grid;
+    grid-template-areas: 
+    "top-left top-middle top-right"
+    "middle-left middle-middle middle-right"
+    "footer footer footer "
+}
+.header{
+    grid-area: top-middle;
+}
+.timer-section{
+    grid-area: middle-middle;
+}
+.footer{
+    grid-area: footer;
+}
