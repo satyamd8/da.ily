@@ -12,18 +12,16 @@ function playPause(){
         console.log("is currently playing");
     }
 }
+
 let clockElement = document.querySelector(".clock");
 function reset(){
     clockElement.textContent = "25:00";
     console.log("reset timer");
 }
-// function pause(){
-//     if(playPause === true){
-//         playPause = false;
-//     }
-// }
-// function play(){
-//     if(playPause===false){
-//         playPause = true;
-//     }
-// }
+
+let stages = ["study", "break", "long break"]
+let current = document.getElementById("current")
+function currentStage(){
+    //We want to change the display to show which one we are on now
+    //Also include animation
+}
