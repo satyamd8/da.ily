@@ -25,3 +25,10 @@ function currentStage(){
     //We want to change the display to show which one we are on now
     //Also include animation
 }
+
+//This will unmute the lofi video
+function unmuteVideo() {
+    let iframe = document.getElementById("youtubePlayer");
+    let src = iframe.src.replace("mute=1", "mute=0");
+    iframe.src = src; // Reloads video with sound
+}
