@@ -6,6 +6,11 @@ body{
     background-attachment: fixed;
     color: rgb(130, 97, 137);
 }
+button{
+    border-radius: 20px;
+    width: 50px;
+    background-color: rgb(167, 158, 224);
+}
 .toolBody{
     display: grid;
     grid-template-areas: 
@@ -27,18 +32,29 @@ body{
     align-items: center;
 }
 .footer{
+    padding: 10px;
     grid-area: footer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
 }
 .playpause_button, .replay_button{
     height: 25px;
     width: 25px;
 }
-button{
-    border-radius: 20px;
-    
-    width: 50px;
-    background-color: rgb(167, 158, 224);
-}
+
 .playpause_button{
     filter: invert(0%) brightness(0%);
+}
+
+#note{
+    width: 750px;
+    height: 500px;
+    font-size: 16px;
+    padding: 10px;  /* Adds space inside the textarea */
+    text-align: left; /* Aligns text to the left */
+    vertical-align: top; /* Aligns text to the top */
+    line-height: 1.5; /* Adjusts spacing between lines */
+    resize: none; /* Prevents manual resizing */
 }
