@@ -1,34 +1,56 @@
 //This will keep track whether the time is running or not
-let is_playing = false;
+let stages = ["study", "break", "long break"]
+let stagesTime = ["25:00", "5:00", "15:00"]
+let index = 0
+let current = document.getElementById("current")
+let displayTimer = document.querySelector(".clock")
+let time = conversion(displayTimer.textContent)
+let timeLeft = time[0] * 60 + time[1]
 let intervalId;
-let display = document.getElementById("current")
 
 function playPause(){
-    if(is_playing == true){
-        is_playing = false;
-        console.log("is currently paused");
+    if(!intervalId){
+        timer();
+        console.log("Timer start")
     }else{
-        is_playing = true;
-        console.log("is currently playing");
+        clearInterval(intervalId);
+        intervalId = null;
+        console.log("Timer pause")
     }
 }
-
-let clockElement = document.querySelector(".clock");
 function reset(){
-    clockElement.textContent = "25:00";
+    displayTimer.textContent = stagesTime[index];
+    time = conversion(displayTimer.textContent)
+    timeLeft = time[0] * 60 + time[1]
     console.log("reset timer");
 }
 
-let stages = ["study", "break", "long break"]
-let current = document.getElementById("current")
-function currentStage(){
+
+function timer(){
     //We want to change the display to show which one we are on now
     //Also include animation
+    intervalId = setInterval (()=>{
+        let min = parseInt(Math.floor(timeLeft/60))
+        let sec = timeLeft % 60
+
+        let format = `${min}:${String(sec).padStart(2, '0')}`;        
+        displayTimer.textContent = format
+
+        if(timeLeft > 0){
+            timeLeft--;
+        }
+        else if(timeLeft == 0){
+            index++
+            current.textContent = stages[index]
+            reset()
+        }else{
+            clearInterval(intervalId)
+        }
+    }, 1000)
 }
 
-//This will unmute the lofi video
-// function unmuteVideo() {
-//     let iframe = document.getElementById("youtubePlayer");
-//     let src = iframe.src.replace("mute=1", "mute=0");
-//     iframe.src = src; // Reloads video with sound
-// }
+function conversion(timer){
+    let mins = parseInt(timer.substring(0, timer.indexOf(':')));
+    let seconds = parseInt(timer.substring(timer.indexOf(':')+1));
+    return [mins,seconds]
+}
