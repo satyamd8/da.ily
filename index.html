@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="StyleSheet/home.css">
+    <script src="backend/home.js"></script>
     <title>da.ily</title>
 </head>
 <body>
@@ -27,7 +28,41 @@
         </h1>
         <div class="buttons">
             <a href="tracker.html"><button>Start Studying</button></a>
-            <a href=""><button>Customize</button></a>
+            <button id="open-settings">Customize</button>
+        </div>
+    </div>
+
+    <div class="settings" id="settings">
+        <div class="settings-inner">
+            <span class="close">&times;</span>
+            <h2 class="title">Settings</h2>
+
+            <div class="item">
+                <label for ="theme">Themes:</label>
+                <select id="theme" name="theme">
+                    <option value="dawn">Dawn</option>
+                    <option value="water">Water</option>
+                    <option value="earth">Earth</option>
+                    <option value="sunset">Sunset</option>
+                </select>
+            </div>
+
+            <div class="item">
+                <label for="font">Font:</label>
+                <select id="font" name="font">
+                    <option value="Quicksand">Quicksand (default)</option>
+                    <option value="Outfit">Outfit</option>
+                    <option value="Inter">Inter</option>
+                </select>
+            </div>
+
+            <div class="item">
+                <h3>Sound/Music:</h3>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
         </div>
     </div>
 
