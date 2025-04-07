@@ -10,11 +10,11 @@ function createCalendar()
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth();
 
-    const firstDay = new Date(currentYear, currentMonth, 0);
+    const firstDay = new Date(currentYear, currentMonth, 1);
     const lastDay = new Date(currentYear, currentMonth+1, 0);
     const totalDays = lastDay.getDate();
-    const first_index = firstDay.getDate();
-    const last_index = lastDay.getDate();
+    const first_index = firstDay.getDay();
+    const last_index = lastDay.getDay();
 
     const month_year_str = currentDate.toLocaleString('default', {month: 'long', year: 'numeric'});
     month_year.textContent = month_year_str;
