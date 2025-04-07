@@ -53,14 +53,32 @@ h1{
     height: 490px;
     border: transparent;
     border-radius: 10px;
-    
 }
 
-p{
+.month{
     font-size: 40px;
     color: #000000;
     padding-left: 50px;
     padding-top: 15px;
+    padding-bottom: 20px;
+    padding-right: 50px;
+}
+
+.header{
+    display: flex;
+    padding-left: 20px;
+    align-items:center;
+}
+
+#prev-btn, #next-btn{
+    border-radius: 10px;
+    border-color: transparent;
+    color: black;
+}
+
+#add-session{
+    border-radius: 20px;
+    font-size: 25px;
 }
 
 .weekdays{
@@ -76,4 +94,16 @@ p{
     padding: 1px 1px 1px 1px;
     color: #000000;
     border-radius: 10px;
+}
+
+.days{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: end;
+    gap: 5px;
+}
+
+.date{
+    display: flex;
+    align-items: center;
 }

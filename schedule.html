@@ -22,17 +22,26 @@
 
     <h1> Calendar </h1>
     <div class="calendar">
-        <p> April </p>
-        <div class="weekdays">
-            <div>Sunday</div>
-            <div>Monday</div>
-            <div>Tuesday</div>
-            <div>Wednesday</div>
-            <div>Thursday</div>
-            <div>Friday</div>
-            <div>Saturday</div>
+        <div class="header"> 
+            <button id="prev-btn"> < </button>
+            <div class="month" id="month"> </div>
+            <button id="next-btn"> > </button>
+            <button id="add-session"> + </button>
         </div>
+        <div id="body">
+            <div class="weekdays">
+                <div class="weekday">Sunday</div>
+                <div class="weekday">Monday</div>
+                <div class="weekday">Tuesday</div>
+                <div class="weekday">Wednesday</div>
+                <div class="weekday">Thursday</div>
+                <div class="weekday">Friday</div>
+                <div class="weekday">Saturday</div>
+            </div>
+            <div class="days" id="days"> </div>
+        </div> 
     </div>
     
+    <script src="backend/schedule.js"> </script>
 </body>
 </html>
