@@ -71,14 +71,16 @@ h1{
 }
 
 #prev-btn, #next-btn{
-    border-radius: 10px;
+    display: block;
+    border-radius: 50%;
     border-color: transparent;
     color: black;
 }
 
 #add-session{
-    border-radius: 20px;
-    font-size: 25px;
+    border-radius: 50%;
+    font-size: 30px;
+    margin-left: 900px;
 }
 
 .weekdays{
@@ -109,4 +111,9 @@ h1{
     justify-content: center;
     font-size: 30px;
     border-radius: 10px;
+    padding-bottom: 30px;
+}
+
+.date-inactive{
+    font-size: 15px;
 }

@@ -37,7 +37,7 @@ function createCalendar()
     for(let i = 1; i<= 7 - last_index; ++i)
     {
         const nextDate = new Date(currentYear, currentMonth + 1, i);
-        generateDays += `<div class="date inactive">${nextDate.getDate()}</div>`;
+        generateDays += `<div class="date-inactive">${nextDate.getDate()}</div>`;
     }
 
     days.innerHTML = generateDays;
