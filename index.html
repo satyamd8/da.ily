@@ -4,25 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="StyleSheet/home.css">
+    <link rel="stylesheet" href="StyleSheet/mobile.css">
     <script src="backend/home.js"></script>
     <title>da.ily</title>
 </head>
 <body>
     <audio id="click-sound" src="click.mp3" preload="auto"></audio>
 
+    <!--Mobile-->
+    <input type="checkbox" id="menu">
+    <!--Mobile-->
     <header>
         <h3>da.ily</h3>
+        <!--Mobile-->
+        <label for="menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </label>
+        <!--Mobile-->
+        <nav>
+            <ul>
+                <li><a href="index.html">home</a></li>
+                <li><a href="tracker.html">tracker</a></li>
+                <li><a href="tools.html">tools</a></li>
+                <li><a href="schedule.html">schedule</a></li>
+                <li><a href="groups.html">groups</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <nav>
-        <ul>
-            <li><a href="index.html">home</a></li>
-            <li><a href="tracker.html">tracker</a></li>
-            <li><a href="tools.html">tools</a></li>
-            <li><a href="schedule.html">schedule</a></li>
-            <li><a href="groups.html">groups</a></li>
-        </ul>
-    </nav>
+    
     <div class="welcome">
         <h1>
             Welcome <br>
@@ -32,6 +43,16 @@
             <a href="tracker.html"><button>Start Studying</button></a>
             <button id="open-settings">Customize</button>
         </div>
+    </div>
+
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a href="tracker.html">tracker</a></li>
+            <li><a href="tools.html">tools</a></li>
+            <li><a href="schedule.html">schedule</a></li>
+            <li><a href="groups.html">groups</a></li>
+        </ul>
     </div>
 
     <div class="settings" id="settings">

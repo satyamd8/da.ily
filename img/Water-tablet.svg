@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="400" y1="1080" x2="400" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset=".48" stop-color="#68c0f2"/>
+      <stop offset=".57" stop-color="#72c5f3"/>
+      <stop offset=".74" stop-color="#90d3f6"/>
+      <stop offset=".97" stop-color="#bfeafb"/>
+      <stop offset="1" stop-color="#c7eefc"/>
+    </linearGradient>
+  </defs>
+  <g id="Tablet_-_800" data-name="Tablet - 800">
+    <g id="Water">
+      <rect class="cls-2" width="800" height="1080"/>
+      <g id="Triple">
+        <circle class="cls-1" cx="728.96" cy="158.82" r="59.04"/>
+        <circle class="cls-1" cx="641.83" cy="242.17" r="38.83"/>
+        <circle class="cls-1" cx="756.11" cy="261.11" r="19.89"/>
+      </g>
+      <g id="Triple_copy_2" data-name="Triple copy 2">
+        <path class="cls-1" d="M800,780.33v111.42c-19.15,6.71-41.25,3.35-57.82-10.75-24.83-21.13-27.82-58.39-6.69-83.22,16.29-19.13,42.14-25.3,64.51-17.45Z"/>
+        <circle class="cls-1" cx="660.07" cy="843.03" r="38.83"/>
+        <circle class="cls-1" cx="734.82" cy="931.53" r="19.89"/>
+      </g>
+      <g id="Triple_copy" data-name="Triple copy">
+        <circle class="cls-1" cx="123.9" cy="586.84" r="52.27"/>
+        <circle class="cls-1" cx="69.22" cy="678.54" r="34.38"/>
+        <circle class="cls-1" cx="171.22" cy="667.72" r="17.61"/>
+      </g>
+    </g>
+  </g>
+</svg>

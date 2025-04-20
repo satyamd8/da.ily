@@ -23,7 +23,7 @@
 }
 
 button, input, select, option, textarea {
-    font-family: inherit !important;
+    font-family: inherit;
 }
 
 body{
@@ -33,7 +33,6 @@ body{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
 
     color: var(--current-primary);
 }
@@ -169,6 +168,10 @@ button:hover{
     transition: 0.3s ease-out;
 }
 
+.mobile-nav {
+    opacity:0;
+}
+
 /*
 ---------------
 Settings
@@ -266,7 +269,6 @@ Settings
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* The switch - the box around the slider */
 .switch {
     position: relative;
     display: inline-block;
@@ -274,14 +276,12 @@ Settings
     height: 34px;
 }
 
-  /* Hide default HTML checkbox */
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-  /* The slider */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -315,12 +315,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
 
-  /* Rounded sliders */
 .slider.round {
     border-radius: 34px;
 }
@@ -334,8 +331,106 @@ footer{
     text-align: center;
     font-size: 20px;
 
+    padding: 0 10px;
     height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+/*
+------
+Mobile
+------
+*/
+
+#menu {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    nav {
+        opacity: 0;
+    }
+
+    .mobile-nav{
+        opacity: 1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+    
+        font-size: 20px;
+        font-weight: 650;
+        color: var(--current-secondary);
+        text-decoration: none;
+    }
+    
+    .mobile-nav ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+    
+        margin: 0;
+        padding: 25px 0;
+        width: 350px;
+    
+        list-style: none;
+        border-radius: 35px;
+        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+    
+        background-color: white;
+        text-align: center;
+    }
+    
+    .mobile-nav a {
+        padding: 10px 100px;
+    
+        text-decoration: none;
+        color: var(--current-secondary);
+        border-radius: 12px;
+        
+        transition: all 0.3s ease-out;
+    }
+    
+    .mobile-nav a:hover {
+        background-color: var(--current-secondary);
+        color: white;
+    }
+}
+
+@media (max-width: 800px) {
+    body {
+        background-image: url('/img/Dawn.svg');
+    }
+    .welcome{
+        height: 50vh;
+    }
+    
+    h1{
+        font-size: 100px;
+    }
+}
+
+@media (max-width: 470px) {
+    body {
+        background-image: url('/img/Dawn.svg');
+    }
+    .welcome {
+        justify-content: flex-start;
+        padding-top: 25px;
+        height: 40vh;
+    }
+
+    h1{
+        font-size: 75px;
+    }
+
+    .buttons button {
+        font-size: 20px;
+    }
 }

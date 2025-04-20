@@ -53,6 +53,11 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('selectedTheme', selectedTheme);
     })
 
+    window.addEventListener('resize', () => {
+        const currentTheme = document.getElementById('theme').value;
+        changeTheme(currentTheme);
+    });
+
     //font selection
     fontSelect.addEventListener("change", function() {
         const selectedFont = this.value;
@@ -76,12 +81,20 @@ const themes = {
     water: {
         primary: 'var(--water)',
         secondary: 'var(--water2)',
-        image: '/img/Water.svg'
+        image: {
+            desktop: '/img/Water.svg',
+            tablet: '/img/Water-tablet.svg',
+            mobile: '/img/Water-mobile.svg'
+        }
     },
     earth: {
         primary: 'var(--earth)',
         secondary: 'var(--earth2)',
-        image: '/img/Earth.svg'
+        image: {
+            desktop: '/img/Earth.svg',
+            tablet: '/img/Earth-tablet.svg',
+            mobile: '/img/Earth-mobile.svg'
+        }
     },
     sunset: {
         primary: 'white',
@@ -99,11 +112,26 @@ const fonts = {
 function changeTheme(theme) {
     const themeConfig = themes[theme];
     const root = document.documentElement;
+    const width = window.innerWidth;
 
     root.style.setProperty('--current-primary', themeConfig.primary);
     root.style.setProperty('--current-secondary', themeConfig.secondary);
-    document.body.style.backgroundImage = `url("${themeConfig.image}")`;
-    document.querySelector('.settings-inner').style.backgroundImage = `url("${themeConfig.image}")`;
+
+    if (themeConfig.image.desktop) {
+        let backgroundImage;
+        if (width <= 470) {
+            backgroundImage = themeConfig.image.mobile;
+        } else if (width <= 800) {
+            backgroundImage = themeConfig.image.tablet;
+        } else {
+            backgroundImage = themeConfig.image.desktop;
+        }
+        document.body.style.backgroundImage = `url("${backgroundImage}")`;
+        document.querySelector('.settings-inner').style.backgroundImage = `url("${backgroundImage}")`;
+    } else {
+        document.body.style.backgroundImage = `url("${themeConfig.image}")`;
+        document.querySelector('.settings-inner').style.backgroundImage = `url("${themeConfig.image}")`;
+    }
 
     document.querySelectorAll('button').forEach(button => {
         button.style.backgroundImage = themeConfig.secondary;
