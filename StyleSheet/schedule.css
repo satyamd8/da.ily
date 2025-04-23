@@ -66,8 +66,10 @@ h1{
 
 .header{
     display: flex;
-    padding-left: 20px;
     align-items:center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 #prev-btn, #next-btn{
@@ -80,7 +82,8 @@ h1{
 #add-session{
     border-radius: 50%;
     font-size: 30px;
-    margin-left: 900px;
+    margin-left: auto;
+    margin-right: 150px;
 }
 
 .weekdays{
@@ -151,4 +154,54 @@ h1{
 
 #notes{
     height: 100px;
+}
+
+input{
+    background-color: #dad6f8;
+}
+
+textarea{
+    background-color: #d4d0f8;
+}
+
+.weekday, .date {
+    border: 1px solid #ccc; /* light gray lines */
+    box-sizing: border-box;
+}
+
+.event-tag {
+    background-color: #d4d0f8;
+    color: #333;
+    margin-top: 5px;
+    padding: 2px 4px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.event-tag:hover {
+    background-color: #e0f7fa;
+}
+
+.newSession {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #dad6f8;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 200;
+}
+
+#cancel-btn {
+    background-color: #6859d9;
+    border: none;
+    color: #fff; ;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
 }

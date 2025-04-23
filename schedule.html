@@ -53,8 +53,20 @@
             <label for="time"> Time: </label> <br>
             <input type="time" id="time" name="time"> <br>
             <label for="notes"> Notes: </label> <br>
-            <textarea type="text" id="text" name="text"> </textarea><br>
+            <textarea type="notes" id="notes" name="notes"> </textarea><br>
+            <input type="submit" value="Submit">
         </form>
+    </div>
+
+    <div id="newSession" class="newSession" style="display: none;">
+        <div class="details">
+            <h3 id="session-subject"></h3>
+            <p><strong>Date:</strong> <span id="session-date"></span></p>
+            <p><strong>Time:</strong> <span id="session-time"></span></p>
+            <p><strong>Notes:</strong></p>
+            <p id="session-notes"></p>
+        </div> 
+        <button id="cancel-btn"> Delete Event </button>
     </div>
     
     <script src="backend/schedule.js"> </script>

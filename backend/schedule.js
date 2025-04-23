@@ -5,6 +5,9 @@ const nextBtn = document.getElementById('next-btn');
 const addSesh = document.getElementById('add-session');
 const sessions = document.getElementById('sessions');
 const overlays = document.getElementById('overlay');
+const form = document.querySelector('form');
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+const cancelBtn = document.getElementById('cancel-btn');
 
 //getting currentDate
 let currentDate = new Date();
@@ -35,13 +38,28 @@ function createCalendar()
     }
 
     //current month's days
-    for(let i = 1; i <= totalDays; ++i)
-    {
+    for(let i = 1; i <= totalDays; ++i) {
         const date = new Date(currentYear, currentMonth, i);
+        const formattedDate = date.toISOString().split("T")[0]; // Format: yyyy-mm-dd
         const activeDate = date.toDateString() === new Date().toDateString() ? 'active' : '';
-        generateDays += `<div class="date ${activeDate}"> ${i} </div>`;
-    }
 
+        const dayEvents = events
+        .map((event, index) => ({ ...event, index }))
+        .filter(event => event.date === formattedDate);
+
+        let eventHTML = '';
+        dayEvents.forEach(event => {
+            eventHTML += `<div class="event-tag" data-index="${event.index}">${event.subject}</div>`;
+        });
+    
+        generateDays += `
+            <div class="date ${activeDate}" data-date="${formattedDate}">
+                <div>${i}</div>
+                ${eventHTML}
+            </div>
+        `;
+    }
+    
     //next month's days
     for(let i = 1; i<= 7 - last_index; ++i)
     {
@@ -50,6 +68,24 @@ function createCalendar()
     }
 
     days.innerHTML = generateDays;
+
+    document.querySelectorAll('.event-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+            const index = tag.getAttribute('data-index');
+            const event = events[index];
+    
+            // Fill in the modal with the event data
+            document.getElementById('session-subject').textContent = event.subject;
+            document.getElementById('session-date').textContent = event.date;
+            document.getElementById('session-time').textContent = event.time;
+            document.getElementById('session-notes').textContent = event.notes;
+    
+            cancelBtn.setAttribute('data-index', index);
+            document.getElementById('newSession').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        });
+    });
+    
 }
 
 prevBtn.addEventListener("click",() => {
@@ -72,4 +108,45 @@ overlays.addEventListener("click",() => {
     overlays.style.display = "none";
 })
 
+overlays.addEventListener("click", () => {
+    document.getElementById('newSession').style.display = 'none'; // Hide modal
+});
+
 createCalendar();
+
+//event creation
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const subject = document.getElementById('subject').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const notes = document.getElementById('notes').value;
+
+    const newEvent = {
+        subject,
+        date,
+        time,
+        notes
+    };
+
+    events.push(newEvent);
+    localStorage.setItem('events', JSON.stringify(events));
+
+    form.reset();
+    sessions.style.display = "none";
+    overlays.style.display = "none";
+
+    createCalendar(); // Refresh the calendar so the event shows up
+});
+
+cancelBtn.addEventListener('click', () => {
+    const index = cancelBtn.getAttribute('data-index');
+
+    if (confirm('Delete this event?')) {
+        events.splice(index, 1);
+        localStorage.setItem('events', JSON.stringify(events));
+        document.getElementById('newSession').style.display = 'none';
+        createCalendar(); // Refresh
+    }
+});
