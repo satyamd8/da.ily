@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Quicksand:wght@300..700&display=swap');
+
+:root {
+    --dawn: #826189;
+    --dawn2: #A7A0E0;
+    --water: #126AA1;
+    --water2: #205B96;
+    --earth: #206E2D;
+    --earth2: #289620;
+    --sunset: #EB2B28;
+
+    --quicksand: 'Quicksand', sans-serif;
+    --inter: 'Inter', sans-serif;
+    --outfit: 'Outfit', sans-serif;
+
+    --current-primary: var(--dawn);
+    --current-secondary: var(--dawn2);
+}
+
+/* Header Styling */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  position: relative;
+}
+
+/* Navigation Links */
+.nav {
+  display: flex;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Hamburger Menu */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  z-index: 2;
+}
+
+.menu-icon span {
+  height: 3px;
+  width: 25px;
+  background-color: black;
+  display: block;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+/* Animate Hamburger into X */
+#menu:checked + header .menu-icon span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#menu:checked + header .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu:checked + header .menu-icon span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Tracking Section */
+.tracking-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.stopwatch-section, .add-task {
+  flex: 1;
+  min-width: 300px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.stopwatch-display {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+#stopwatch-display {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #826189;
+  margin-top: 0.5rem;
+}
+
+.stopwatch-controls {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.stopwatch-controls button {
+  padding: 0.75rem 1.5rem;
+  background-color: #826189;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1rem;
+}
+
+.stopwatch-controls button:hover {
+  background-color: #6a4e70;
+}
+
+/* Task Form */
+.add-task form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.add-task input, .add-task select {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.add-task button {
+  padding: 0.75rem;
+  background-color: #826189;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.add-task button:hover {
+  background-color: #6a4e70;
+}
+
+/* Task Lists */
+.task-lists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.task-list {
+  flex: 1;
+  min-width: 300px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.task-instructions {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+#task-list li, #finished-task-list li {
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#task-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.active-task {
+  background-color: #e6d7ec !important;
+  border-left: 4px solid #826189;
+}
+
+.time-spent {
+  font-style: italic;
+  color: #826189;
+  font-weight: 600;
+}
+
+/* Charts */
+.charts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.progress-section, .time-section {
+  flex: 1;
+  min-width: 400px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.progress-section h2, .time-section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Add Legend Styling */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.color-box {
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+}
+
+.class-color {
+  background-color: #826189; /* Purple for classes */
+}
+
+.club-color {
+  background-color: #ff82b6; /* Blue for clubs */
+}
+
+.chart-description {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.view-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.view-toggle button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #eee;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.view-toggle button:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.view-toggle button:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.view-toggle button.active {
+  background-color: #826189;
+  color: white;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  background-color: #f8f8f8;
+  margin-top: 2rem;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: flex;
+  }
+  
+  .nav {
+    position: absolute;
+    top: 70px;
+    right: 1rem;
+    background-color: white;
+    width: 200px;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  #menu:checked + header .nav {
+    display: flex;
+  }
+  
+  .tracking-container {
+    flex-direction: column;
+  }
+  
+  .charts-container {
+    flex-direction: column;
+  }
+  
+  .task-lists {
+    flex-direction: column;
+  }
+}

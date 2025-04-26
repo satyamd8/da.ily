@@ -1,12 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="StyleSheet/tracker.css">
-    <title>Tracker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="StyleSheet/tracker.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="backend/tracker.js"></script>
 </head>
 <body>
-    
+  <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+
+  <!-- Mobile Menu Toggle -->
+  <input type="checkbox" id="menu" hidden>
+
+  <header>
+    <h3>da.ily</h3>
+
+    <!-- Hamburger Icon -->
+    <label for="menu" class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <nav class="nav">
+      <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="tracker.html" class="active">tracker</a></li>
+        <li><a href="tools.html">tools</a></li>
+        <li><a href="schedule.html">schedule</a></li>
+        <li><a href="groups.html">groups</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="tracker">
+    <!-- Task Tracking Section -->
+    <section class="tracking-container">
+      <!-- Stopwatch -->
+      <div class="stopwatch-section">
+        <h2>da.ily Stopwatch</h2>
+        <div class="stopwatch-display">
+          <p>Keep track of your tasks using a stopwatch :)</p>
+          <div id="stopwatch-display">00:00:00</div>
+        </div>
+        <div class="stopwatch-controls">
+          <button id="stopwatch-start">Start</button>
+          <button id="stopwatch-stop">Stop</button>
+          <button id="stopwatch-reset">Reset</button>
+        </div>
+      </div>
+
+      <!-- Task Form -->
+      <div class="add-task">
+        <h2>Add New Task</h2>
+        <form id="task-form">
+          <input type="text" id="task-name" placeholder="Task name..." required />
+          <select id="task-type">
+            <option value="class">Class</option>
+            <option value="club">Club</option>
+          </select>
+          <input type="text" id="task-category" placeholder="e.g. CSCI 39548 or WiCS" required />
+          <button type="submit">Add Task</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Task Lists -->
+    <section class="task-lists">
+      <div class="task-list">
+        <h2>Upcoming Tasks</h2>
+        <p class="task-instructions">Click on a task to time it. Double-click to mark as finished! </p>
+        <ul id="task-list"></ul>
+      </div>
+      <div class="task-list">
+        <h2>Finished Tasks</h2>
+        <ul id="finished-task-list"></ul>
+      </div>
+    </section>
+
+    <!-- Progress Charts -->
+    <section class="charts-container">
+      <!-- Bar Chart Section -->
+      <div class="progress-section">
+        <h2>Tasks Completed</h2>
+        <div class="view-toggle">
+          <button id="weekly-btn" class="active">Weekly</button>
+          <button id="monthly-btn">Monthly</button>
+        </div>
+        <canvas id="progress-chart" width="500" height="300"></canvas>
+      </div>
+      
+      <!-- Pie Chart Section -->
+      <div class="time-section">
+        <h2>Time Distribution</h2>
+        <div class="chart-description">
+          <p>Below is a time distribution, which shows how you have been using your time ever since you started using da.ily.</p>
+        </div>
+        <canvas id="time-chart" width="500" height="300"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h2>Stay focused. Stay organized. Study your way.</h2>
+  </footer>
 </body>
 </html>
