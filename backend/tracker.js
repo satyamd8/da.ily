@@ -284,7 +284,7 @@ let pieChart = new Chart(pieCtx, {
       data: [0, 0], // Initial data
       backgroundColor: [
         '#826189', // Purple for classes
-        '#36A2EB'  // Blue for clubs
+        '#ff82b6'  // Pink for clubs
       ]
     }]
   },
