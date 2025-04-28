@@ -134,7 +134,15 @@ h1{
 
 h1 span{
     font-family:var(--quicksand);
+    font-size: 175px;
     font-weight: 200;
+    cursor: pointer;
+    transition: all ease 0.5s;
+}
+
+h1 span:hover {
+    font-size: 185px;
+    transition: all ease 0.5s;
 }
 
 .buttons {
@@ -414,6 +422,9 @@ Mobile
     h1{
         font-size: 100px;
     }
+    h1 span{
+        font-size: 100px;
+    }
 }
 
 @media (max-width: 470px) {
@@ -428,6 +439,9 @@ Mobile
 
     h1{
         font-size: 75px;
+    }
+    h1 span{
+        font-size: 100px;
     }
 
     .buttons button {

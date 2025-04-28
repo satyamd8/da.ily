@@ -1,30 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const openButton = document.getElementById("open-settings");
-    const closeButton = document.querySelector(".close")
-    const settings = document.getElementById("settings");
-
-    const themeSelect = document.getElementById("theme");
-    const fontSelect = document.getElementById("font");
-
-    const savedTheme = localStorage.getItem('selectedTheme') || 'dawn';
-    const savedFont = localStorage.getItem('selectedFont') || 'Quicksand';
-
-    if (themeSelect) themeSelect.value = savedTheme;
-    if (fontSelect) fontSelect.value = savedFont;
-
-    //const clickSound = document.getElementById("click-sound");
-    //clickSound.volume = 0.4;
-    const soundToggle = document.getElementById("switch");
-
-/*
     //click sounds
-    function playClickSound() {
-        if (soundToggle.checked) return;
-        clickSound.currentTime = 0;
-        clickSound.play().catch(e => console.log("Can't play click:", e));
-    }
+    const clickSound = document.getElementById("click-sound");
+    if (clickSound) clickSound.volume = 0.4;
 
-    document.addEventListener('mousedown', function(event) {
+    document.addEventListener('mousedown', function (event) {
         const target = event.target;
         if (target.tagName === 'BUTTON' || 
             target.tagName === 'A' || 
@@ -33,56 +12,23 @@ document.addEventListener('DOMContentLoaded', function () {
             target.tagName === 'SPAN' ||
             target.closest('button') || 
             target.closest('a')) {
-                playClickSound();
-            }
-    });
-*/
-    
-    //settings open and close
-    openButton.addEventListener("click", () => {
-        settings.classList.add("open");
-    });
-
-    closeButton.addEventListener("click", () => {
-        settings.classList.remove("open");
-    });
-
-    settings.addEventListener("click", (e) => {
-        if (e.target === settings) {
-            settings.classList.remove("open");
+            playClickSound();
         }
     });
 
-    //theme selection
-    themeSelect.addEventListener("change", function() {
-        const selectedTheme = this.value;
-        changeTheme(selectedTheme);
-        localStorage.setItem('selectedTheme', selectedTheme);
-        console.log('Saved theme:', localStorage.getItem('selectedTheme'));
-    })
+    function playClickSound() {
+        const soundToggle = document.getElementById("switch");
+        if (soundToggle && soundToggle.checked) return;
+        if (clickSound) {
+            clickSound.currentTime = 0;
+            clickSound.play().catch(e => console.log("Can't play click:", e));
+        }
+    }
 
-    window.addEventListener('resize', () => {
-        const currentTheme = document.getElementById('theme').value;
-        changeTheme(currentTheme);
-    });
-
-    //font selection
-    fontSelect.addEventListener("change", function() {
-        const selectedFont = this.value;
-        changeFont(selectedFont);
-        localStorage.setItem('selectedFont', selectedFont);
-        console.log('Saved font:', localStorage.getItem('selectedFont'));
-    })
-/*
-    soundToggle.addEventListener('change', function() {
-        muteAllAudio(this.checked)
-    })
-
+    //loading theme and sound setting
     loadPreferences();
-*/
-});
+})
 
-/*
 const themes = {
     dawn: {
         primary: "var(--dawn)",
@@ -118,7 +64,7 @@ const fonts = {
     Quicksand: 'var(--quicksand)',
     Inter: 'var(--inter)',
     Outfit: 'var(--outfit)'
-}
+};
 
 function changeTheme(theme) {
     const themeConfig = themes[theme];
@@ -128,8 +74,9 @@ function changeTheme(theme) {
     root.style.setProperty('--current-primary', themeConfig.primary);
     root.style.setProperty('--current-secondary', themeConfig.secondary);
 
+    let backgroundImage = '';
+
     if (themeConfig.image.desktop) {
-        let backgroundImage;
         if (width <= 470) {
             backgroundImage = themeConfig.image.mobile;
         } else if (width <= 800) {
@@ -145,7 +92,7 @@ function changeTheme(theme) {
     }
 
     document.querySelectorAll('button').forEach(button => {
-        button.style.backgroundImage = themeConfig.secondary;
+        button.style.backgroundColor = themeConfig.secondary;
     });
 
     document.querySelectorAll('nav a').forEach(link => {
@@ -160,43 +107,51 @@ function changeTheme(theme) {
         });
     });
 
-    document.querySelectorAll('.settings-inner').style.color = themeConfig.primary;
+    const settingsInner = document.querySelector('.settings-inner');
+    if (settingsInner) {
+        settingsInner.style.color = themeConfig.primary;
+    }
 }
 
 function changeFont(font) {
-    const fontFamily = fonts[font];
-    document.body.style.fontFamily = fontFamily;
-    document.getElementById('daily').style.fontFamily = fontFamily;
+    const chosenFont = fonts[font];
+    if (chosenFont) {
+        document.body.style.fontFamily = chosenFont;
+
+        const daily = document.getElementById('daily');
+        if (daily) {
+            daily.style.fontFamily = chosenFont;
+        }
+    }
 }
 
 function loadPreferences() {
     const savedTheme = localStorage.getItem('selectedTheme');
-    const themeToApply = savedTheme || 'dawn';
-    document.getElementById('theme').value = themeToApply;
-    changeTheme(themeToApply);
+    const savedFont = localStorage.getItem('selectedFont');
+
+    //load themes
     if (savedTheme) {
-        document.getElementById('theme').value = savedTheme;
+        console.log(`Loading saved theme: ${savedTheme}`);
         changeTheme(savedTheme);
+    } else {
+        console.log('No saved theme, using default (dawn)');
+        changeTheme('dawn');
     }
 
-    const savedFont = localStorage.getItem('selectedFont');
+    //load font
     if (savedFont) {
-        document.getElementById('font').value = savedFont;
+        console.log(`Loading saved font: ${savedFont}`);
         changeFont(savedFont);
+        
+    } else {
+        console.log('No saved font, using default (quicksand)');
+        changeFont('Quicksand');
     }
 }
+
 
 function muteAllAudio(mute) {
     document.querySelectorAll('audio, video').forEach(media => {
         media.muted = mute;
     });
-
-    if (window.AudioContext || window.webkitAudioContext) {
-        if (mute) {
-            document.documentElement.classList.add('audio-muted');
-        } else {
-            document.documentElement.classList.remove('audio-muted');
-        }
-    }
 }
-*/

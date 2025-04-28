@@ -17,31 +17,60 @@
     --current-secondary: var(--dawn2);
 }
 
-/* Header Styling */
+button, input, select, option, textarea {
+  font-family: inherit;
+}
+
+body{
+  font-family: var(--quicksand);
+
+  background-image: url("/img/Dawn.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  color: var(--current-secondary);
+}
+
+/* Nav Bar */
 header {
   display: flex;
+  justify-content: left;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  position: relative;
+
+  text-align: right;
+  height: 50px;
+  padding-bottom: 50px;
 }
 
-/* Navigation Links */
-.nav {
-  display: flex;
+header h3 {
+  padding: 0 30px;
+  color: var(--current-primary);
 }
 
-.nav ul {
-  display: flex;
+nav ul{
+  font-size: 16px;
+
   list-style: none;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
+  display: flex;
+  flex-direction: row;
+
+  gap:30px;
 }
 
-.nav a {
+nav a{
+  color: var(--current-primary);
   text-decoration: none;
-  color: inherit;
+  font-weight: 600;
+
+  padding: 5px 10px;
+  border-radius: 12px;
+  transition: all 0.2s ease-out;
+}
+
+nav a:hover{
+  background-color: var(--current-secondary);
+  color: white;
 }
 
 /* Hamburger Menu */
@@ -75,8 +104,16 @@ header {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Tracking Section */
 .tracking-container {
+  width: 75%;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
@@ -101,7 +138,7 @@ header {
 #stopwatch-display {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #826189;
+  color: var(--current-primary);
   margin-top: 0.5rem;
 }
 
@@ -113,17 +150,18 @@ header {
 
 .stopwatch-controls button {
   padding: 0.75rem 1.5rem;
-  background-color: #826189;
+  background-color: var(--current-secondary);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: filter 0.2s;
   font-size: 1rem;
 }
 
 .stopwatch-controls button:hover {
-  background-color: #6a4e70;
+  filter: brightness(0.85);
+  transition: filter 0.2s;
 }
 
 /* Task Form */
@@ -142,22 +180,24 @@ header {
 
 .add-task button {
   padding: 0.75rem;
-  background-color: #826189;
+  background-color: var(--current-secondary);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: filter 0.2s;
   font-size: 1rem;
   margin-top: 0.5rem;
 }
 
 .add-task button:hover {
-  background-color: #6a4e70;
+  filter: brightness(0.85);
+  transition: filter 0.2s;
 }
 
 /* Task Lists */
 .task-lists {
+  width: 75%;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
@@ -207,10 +247,10 @@ header {
 
 /* Charts */
 .charts-container {
+  width: 75%;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  margin-top: 2rem;
 }
 
 .progress-section, .time-section {
@@ -285,7 +325,7 @@ header {
 }
 
 .view-toggle button.active {
-  background-color: #826189;
+  background-color: var(--current-secondary);
   color: white;
 }
 
@@ -332,4 +372,8 @@ footer {
   .task-lists {
     flex-direction: column;
   }
+}
+
+@media (max-width: 470px) {
+  
 }

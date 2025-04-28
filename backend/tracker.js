@@ -1,7 +1,5 @@
 // tracker.js
 
-// Audio click
-const clickSound = document.getElementById('click-sound');
 
 // Stopwatch functionality
 let stopwatchTimer;
@@ -47,8 +45,6 @@ function startStopwatch() {
     return;
   }
   
-  clickSound.play();
-  
   if (!stopwatchRunning) {
     stopwatchRunning = true;
     stopwatchTimer = setInterval(() => {
@@ -64,7 +60,6 @@ function startStopwatch() {
 }
 
 function stopStopwatch() {
-  clickSound.play();
   
   if (stopwatchRunning) {
     clearInterval(stopwatchTimer);
@@ -117,7 +112,6 @@ function formatTimeForDisplay(seconds) {
 }
 
 function resetStopwatch() {
-  clickSound.play();
   clearInterval(stopwatchTimer);
   stopwatchRunning = false;
   stopwatchSeconds = 0;
@@ -139,7 +133,6 @@ let currentView = 'weekly';
 
 taskForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  clickSound.play();
 
   const name = document.getElementById('task-name').value.trim();
   const type = document.getElementById('task-type').value;
@@ -322,7 +315,6 @@ const weeklyBtn = document.getElementById('weekly-btn');
 const monthlyBtn = document.getElementById('monthly-btn');
 
 weeklyBtn.addEventListener('click', () => {
-  clickSound.play();
   weeklyBtn.classList.add('active');
   monthlyBtn.classList.remove('active');
   currentView = 'weekly';
@@ -330,7 +322,6 @@ weeklyBtn.addEventListener('click', () => {
 });
 
 monthlyBtn.addEventListener('click', () => {
-  clickSound.play();
   weeklyBtn.classList.remove('active');
   monthlyBtn.classList.add('active');
   currentView = 'monthly';

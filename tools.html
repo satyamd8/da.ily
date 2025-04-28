@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="StyleSheet/tools.css">
+    <script src="backend/preferences.js" defer></script>
     <title>da.ily_tools</title>
 </head>
 <body>
+    <header>
+        <h3>da.ily</h3>
+        <nav>
+            <ul>
+                <li><a href="index.html">home</a></li>
+                <li><a href="tracker.html">tracker</a></li>
+                <li><a href="tools.html">tools</a></li>
+                <li><a href="schedule.html">schedule</a></li>
+                <li><a href="groups.html">groups</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="toolBody">
         <div class="header">
             <h1>Pomodoro Timer</h1>
@@ -34,15 +47,25 @@
         <div class="footer">
             <div class="widgets">
                 <iframe 
-                id="youtubePlayer"
-                width="450" 
-                height="250" 
-                src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1" 
-                frameborder="0" 
-                allow="autoplay" 
-                allowfullscreen>
+                    style = "border-radius: 12px;"
+                    id="youtubePlayer"
+                    width="450" 
+                    height="250" 
+                    src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1" 
+                    frameborder="0" 
+                    allow="autoplay" 
+                    allowfullscreen>
                 </iframe>
-                <p>include the spotify widget here</p>
+                <iframe 
+                    style="border-radius:12px" 
+                    src="https://open.spotify.com/embed/album/3mH6qwIy9crq0I9YQbOuDf?utm_source=generator" 
+                    width="60%" 
+                    height="151" 
+                    frameBorder="0" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy">
+                </iframe>
             </div>
             <div class="notes">
                 <form action="">
