@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="StyleSheet/profile.css">
     <title>profile</title>
 </head>
+
 <body>
     <audio id="click-sound" src="click.mp3" preload="auto"></audio>
 
@@ -31,14 +32,17 @@
                     <button class="add-photo" id="add-photo-btn">Add a picture!</button>
                     <input type="file" id="photo-upload" accept="image/*" style="display: none;">
                 </div>
+                
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name">
                 </div>
+
                 <div class="form-group">
                     <label for="age">Age:</label>
                     <input type="text" id="age" name="age">
                 </div>
+
                 <div class="form-group">
                     <label for="college">Choose a CUNY:</label>
                     <select id="college" name="college">
@@ -48,10 +52,12 @@
                         <option value="citytech">City Tech</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="major">Major:</label>
                     <input type="text" id="major" name="major">
                 </div>
+
                 <div class="form-group">
                     <label for="year">Choose a year:</label>
                     <select id="year" name="year">
@@ -65,9 +71,11 @@
             </section>
             <section class="profile-card">
                 <h3>My Profile Card</h3>
+
                 <div class="avatar-container" id="avatar-preview">
                     <img id="profile-image" src="img/default-avatar.png" alt="Profile Picture" style="display: none;">
                 </div>
+
                 <div class="card-info">
                     <p><strong>Name:</strong> <span id="card-name">Not set</span></p>
                     <p><strong>Age:</strong> <span id="card-age">Not set</span></p>
@@ -81,9 +89,11 @@
         <div class="profile-container">
             <section class="taking-classes">
                 <h2>My Classes</h2>
+
                 <div id="classes-list" class="items-list">
                     <!-- Classes will be added here dynamically -->
                 </div>
+
                 <div class="item-input">
                     <input type="text" id="new-class" placeholder="Add a new class...">
                     <button id="add-class" class="add-btn">Add</button>
@@ -91,9 +101,11 @@
             </section>
             <section class="taking-classes">
                 <h2>My Clubs</h2>
+
                 <div id="clubs-list" class="items-list">
                     <!-- Clubs will be added here dynamically -->
                 </div>
+
                 <div class="item-input">
                     <input type="text" id="new-club" placeholder="Add a new club...">
                     <button id="add-club" class="add-btn">Add</button>
@@ -104,14 +116,17 @@
         <section class="dashboard-section">
             <h2>My Dashboard</h2>
             <div class="stats-grid">
+
                 <div class="stat-card">
                     <h3>Classes</h3>
                     <div class="stat-number" id="class-count">0</div>
                 </div>
+
                 <div class="stat-card">
                     <h3>Clubs</h3>
                     <div class="stat-number" id="club-count">0</div>
                 </div>
+
                 <div class="stat-card">
                     <h3>Hours Studied</h3>
                     <div class="stat-number" id="hours-studied">0</div>
@@ -120,6 +135,7 @@
                         <span id="hours-studied-clubs"></span>
                     </div>
                 </div>
+
                 <div class="stat-card">
                     <h3>Tasks Completed</h3>
                     <div class="stat-number" id="tasks-completed">0</div>
@@ -134,4 +150,5 @@
 
     <script src="backend/profile.js"></script>
 </body>
+
 </html>

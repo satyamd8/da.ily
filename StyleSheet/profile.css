@@ -33,7 +33,6 @@ button, input, select, option, textarea {
   font-family: inherit;
 }
 
-/* Nav Bar */
 header {
   display: flex;
   justify-content: left;
@@ -87,7 +86,6 @@ main {
   font-size: 1.8rem;
 }
 
-/* Dashboard Section */
 .dashboard-section {
   order: 2;
   background: #f8f8f8;
@@ -132,7 +130,6 @@ main {
   color: var(--current-secondary);
 }
 
-/* Profile Containers */
 .profile-container:nth-of-type(1) {
   order: 3;
   display: flex;
@@ -155,7 +152,6 @@ main {
   box-sizing: border-box;
 }
 
-/* Profile Cards */
 .profile-card,
 .basic-info,
 .taking-classes {
@@ -196,7 +192,6 @@ main {
   font-weight: 700;
 }
 
-/* Avatar */
 .avatar-container {
   width: 120px;
   height: 120px;
@@ -222,7 +217,6 @@ main {
   object-fit: cover;
 }
 
-/* Card Info */
 .card-info {
   margin-top: 1.5rem;
   text-align: left;
@@ -275,7 +269,6 @@ main {
   justify-content: space-between;
 }
 
-/* Buttons */
 .add-photo,
 .add-btn,
 .save-btn,
@@ -316,7 +309,6 @@ main {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Items List */
 .items-list {
   max-height: 200px;
   overflow-y: auto;
@@ -347,7 +339,6 @@ main {
   margin: 2rem 0;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .profile-container:nth-of-type(1),
   .profile-container:nth-of-type(2) {
