@@ -99,7 +99,7 @@ nextBtn.addEventListener("click",() => {
 })
 
 addSesh.addEventListener("click",() => {
-    sessions.style.display = "block";
+    sessions.style.display = "flex";
     overlays.style.display = "block";
 })
 

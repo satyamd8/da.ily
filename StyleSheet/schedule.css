@@ -106,6 +106,7 @@ h1{
     margin: 20px auto;
     box-sizing: border-box;
     padding: 16px 50px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Calendar Header */
@@ -230,20 +231,27 @@ h1{
     left: 50%;
     transform: translate(-50%, -50%);
 
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 
     background-image: url("/img/Dawn.svg");
     background-position: center;
     background-size: cover;
     
     color: var(--current-primary);
-    padding: 20px;
-    border-radius: 10px;
+    padding: 20px 0;
+    border-radius: 12px;
     z-index: 100;
     width: 300px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.sessions h3 {
+    font-size: 25px;
+    margin: 10px;
+    padding-bottom: 10px;
 }
 
 #sessions.open {
@@ -261,12 +269,39 @@ h1{
 }
 
 /* Form Elements */
-input {
-    background-color: #dad6f8;
+.sessions form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-textarea {
-    background-color: #d4d0f8;
+.sessions label {
+    color: var(--current-primary);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.sessions input,
+.sessions textarea {
+    width: 100%;
+    padding: 4px;
+    border-radius: 6px;
+    border: 1px solid var(--current-secondary);
+    background-color: #dad6f8;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.sessions input[type="submit"] {
+    background-color: var(--current-secondary);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease-out;
 }
 
 #notes {
