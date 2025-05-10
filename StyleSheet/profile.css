@@ -1,72 +1,87 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Quicksand:wght@300..700&display=swap');
 
 :root {
-  --dawn: #826189;
-  --dawn2: #A7A0E0;
-  --water: #126AA1;
-  --water2: #205B96;
-  --earth: #206E2D;
-  --earth2: #289620;
-  --sunset: #EB2B28;
+    --dawn: #826189;
+    --dawn2: #A7A0E0;
+    --water: #126AA1;
+    --water2: #205B96;
+    --earth: #206E2D;
+    --earth2: #289620;
+    --sunset: #EB2B28;
 
-  --quicksand: 'Quicksand', sans-serif;
-  --inter: 'Inter', sans-serif;
-  --outfit: 'Outfit', sans-serif;
+    --quicksand: 'Quicksand', sans-serif;
+    --inter: 'Inter', sans-serif;
+    --outfit: 'Outfit', sans-serif;
 
-  --current-primary: var(--dawn);
-  --current-secondary: var(--dawn2);
-}
-
-body {
-  font-family: var(--quicksand);
-  background-image: url("/img/Dawn.svg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: var(--current-primary);
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
+    --current-primary: var(--dawn);
+    --current-secondary: var(--dawn2);
 }
 
 button, input, select, option, textarea {
-  font-family: inherit;
+    font-family: inherit;
 }
 
+
+body{
+    font-family: var(--quicksand);
+
+    background-image: url("/img/Dawn.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    color: var(--current-primary);
+
+    height: 90vh;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto; 
+}
+
+/* Nav Bar */
 header {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  height: 50px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    text-align: right;
+    height: 50px;
+    margin: 8px;
 }
 
 header h3 {
-  padding: 0 30px;
-  color: var(--current-primary);
-  margin: 0;
+    padding: 0 30px;
+    color: var(--current-primary);
 }
 
-nav ul {
-  font-size: 16px;
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
+nav ul{
+    font-size: 16px;
+
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+
+    gap:30px;
 }
 
-nav a {
-  color: var(--current-primary);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 5px 10px;
-  border-radius: 12px;
-  transition: all 0.2s ease-out;
+nav a{
+    color: var(--current-primary);
+    text-decoration: none;
+    font-weight: 600;
+
+    padding: 5px 10px;
+    border-radius: 12px;
+    transition: all 0.2s ease-out;
 }
 
-nav a:hover {
-  background-color: var(--current-secondary);
-  color: white;
+nav a:hover{
+    background-color: var(--current-secondary);
+    color: white;
 }
 
 main {
