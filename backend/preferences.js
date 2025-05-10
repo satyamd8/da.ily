@@ -84,28 +84,53 @@ function changeTheme(theme) {
         } else {
             backgroundImage = themeConfig.image.desktop;
         }
-        document.body.style.backgroundImage = `url("${backgroundImage}")`;
-        document.querySelector('.settings-inner').style.backgroundImage = `url("${backgroundImage}")`;
     } else {
-        document.body.style.backgroundImage = `url("${themeConfig.image}")`;
-        document.querySelector('.settings-inner').style.backgroundImage = `url("${themeConfig.image}")`;
+        backgroundImage = themeConfig.image;
     }
+
+    const themedElements = [
+        document.body,
+        document.querySelector('.settings-inner'),
+        document.querySelector('.sessions'),
+        document.querySelector('.newSession')
+    ];
+
+    themedElements.forEach(element => {
+        if (element) {
+            element.style.backgroundImage = `url("${backgroundImage}")`;
+        }
+    });
 
     document.querySelectorAll('button').forEach(button => {
         button.style.backgroundColor = themeConfig.secondary;
     });
 
-    document.querySelectorAll('nav a').forEach(link => {
-        link.style.color = themeConfig.secondary;
-        link.addEventListener('mouseover', () => {
-            link.style.backgroundColor = themeConfig.secondary;
-            link.style.color = 'white';
-        });
-        link.addEventListener('mouseout', () => {
-            link.style.backgroundColor = '';
+    //changes nav color to secondary if home, primary if not
+    if (window.location.pathname.includes('index.html') || window.location.pathname.endsWith('/')) {
+        document.querySelectorAll('nav a').forEach(link => {
             link.style.color = themeConfig.secondary;
+            link.addEventListener('mouseover', () => {
+                link.style.backgroundColor = themeConfig.secondary;
+                link.style.color = 'white';
+            });
+            link.addEventListener('mouseout', () => {
+                link.style.backgroundColor = '';
+                link.style.color = themeConfig.secondary;
+            });
         });
-    });
+    } else {
+        document.querySelectorAll('nav a').forEach(link => {
+            link.style.color = themeConfig.primary;
+            link.addEventListener('mouseover', () => {
+                link.style.backgroundColor = themeConfig.secondary;
+                link.style.color = 'white';
+            });
+            link.addEventListener('mouseout', () => {
+                link.style.backgroundColor = '';
+                link.style.color = themeConfig.primary;
+            });
+        });
+    }
 
     const settingsInner = document.querySelector('.settings-inner');
     if (settingsInner) {

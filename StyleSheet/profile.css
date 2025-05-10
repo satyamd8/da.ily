@@ -50,6 +50,7 @@ header {
 
     text-align: right;
     height: 50px;
+    margin: 8px;
 }
 
 header h3 {
@@ -96,7 +97,7 @@ h2{
     justify-content: space-between;
     margin-bottom: 2rem;
 }
-  
+
 .basic-info {
     flex: 1;
     max-width: 400px;
@@ -111,7 +112,7 @@ h2{
 }
 
 .add-photo{
-    background-color: #826189;
+    background-color: var(--current-primary);
     color: white;
 }
 
