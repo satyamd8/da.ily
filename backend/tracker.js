@@ -426,7 +426,7 @@ taskForm.addEventListener('submit', (e) => {
   }
 });
 
-// Set up the stacked bar chart
+// Update the chart initialization to use theme colors
 const barCtx = document.getElementById('progress-chart').getContext('2d');
 let barChart = new Chart(barCtx, {
   type: 'bar',
@@ -436,12 +436,12 @@ let barChart = new Chart(barCtx, {
       {
         label: 'Classes',
         data: taskCountData.weekly.class,
-        backgroundColor: '#826189' // Purple for classes
+        backgroundColor: '#826189' // Will be updated by updateChartColors()
       },
       {
         label: 'Clubs',
         data: taskCountData.weekly.club,
-        backgroundColor: '#ff82b6' // Pink for clubs
+        backgroundColor: '#ff82b6' // Will be updated by updateChartColors()
       }
     ]
   },
@@ -464,6 +464,9 @@ let barChart = new Chart(barCtx, {
 
 // Function to update the bar chart based on current view
 function updateBarChart() {
+  // Update colors using the current theme
+  updateChartColors();
+  
   if (currentView === 'weekly') {
     barChart.data.labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     barChart.data.datasets[0].data = taskCountData.weekly.class;
@@ -485,8 +488,8 @@ let pieChart = new Chart(pieCtx, {
     datasets: [{
       data: [taskTimeData.class, taskTimeData.club], // Load from localStorage
       backgroundColor: [
-        '#826189', // Purple for classes
-        '#ff82b6'  // Pink for clubs
+        '#826189', // Will be updated by updateChartColors()
+        '#ff82b6'  // Will be updated by updateChartColors()
       ]
     }]
   },
@@ -516,8 +519,71 @@ let pieChart = new Chart(pieCtx, {
 // Function to update the pie chart
 function updatePieChart() {
   pieChart.data.datasets[0].data = [taskTimeData.class, taskTimeData.club];
+  updateChartColors();
   pieChart.update();
 }
+
+// Function to determine current theme from applied CSS variables
+function getCurrentTheme() {
+  const savedTheme = localStorage.getItem('selectedTheme') || 'dawn';
+  return savedTheme;
+}
+
+// Function to get theme colors for charts - using the class/club specific colors
+function getThemeColors() {
+  const currentTheme = getCurrentTheme();
+  let classColor, clubColor;
+  
+  // Get the theme-specific class and club colors based on the current theme
+  switch(currentTheme) {
+    case 'water':
+      classColor = getComputedStyle(document.documentElement).getPropertyValue('--class-color-water').trim();
+      clubColor = getComputedStyle(document.documentElement).getPropertyValue('--club-color-water').trim();
+      break;
+    case 'earth':
+      classColor = getComputedStyle(document.documentElement).getPropertyValue('--class-color-earth').trim();
+      clubColor = getComputedStyle(document.documentElement).getPropertyValue('--club-color-earth').trim();
+      break;
+    case 'sunset': 
+      classColor = getComputedStyle(document.documentElement).getPropertyValue('--class-color-sunset').trim();
+      clubColor = getComputedStyle(document.documentElement).getPropertyValue('--club-color-sunset').trim();
+      break;
+    case 'dawn':
+    default:
+      classColor = getComputedStyle(document.documentElement).getPropertyValue('--class-color-dawn').trim();
+      clubColor = getComputedStyle(document.documentElement).getPropertyValue('--club-color-dawn').trim();
+  }
+  
+  return {
+    primary: classColor || '#826189', // Class color with fallback
+    secondary: clubColor || '#ff82b6'  // Club color with fallback
+  };
+}
+
+// Function to update chart colors whenever the theme changes
+function updateChartColors() {
+  const colors = getThemeColors();
+  
+  // Update bar chart colors
+  barChart.data.datasets[0].backgroundColor = colors.primary;
+  barChart.data.datasets[1].backgroundColor = colors.secondary;
+  barChart.update();
+  
+  // Update pie chart colors
+  pieChart.data.datasets[0].backgroundColor = [colors.primary, colors.secondary];
+  pieChart.update();
+}
+
+// Add event listener for theme changes
+document.addEventListener('themeChanged', function() {
+  updateChartColors();
+});
+
+// Update chart colors on page load
+window.addEventListener('load', function() {
+  // Small delay to ensure theme is fully loaded
+  setTimeout(updateChartColors, 100);
+});
 
 // View Toggle (Weekly/Monthly)
 weeklyBtn.addEventListener('click', () => {

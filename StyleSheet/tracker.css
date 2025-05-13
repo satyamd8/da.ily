@@ -15,6 +15,26 @@
 
     --current-primary: var(--dawn);
     --current-secondary: var(--dawn2);
+
+    --class-color-dawn: #826189;
+    --club-color-dawn: #ff82b6;
+  
+    --class-color-water: #5082E0;
+    --club-color-water: #8ED1FC;
+  
+    --class-color-earth: #c6f1c0;
+    --club-color-earth: #228B22;
+  
+    --class-color-sunset: #FF7E5F;
+    --club-color-sunset: #FEB47B;
+}
+
+.class-item {
+    background-color: var(--current-class-color);
+}
+
+.club-item {
+    background-color: var(--current-club-color);
 }
 
 button, input, select, option, textarea {
