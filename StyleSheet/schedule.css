@@ -101,10 +101,10 @@ h1{
 .calendar {
     background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
-    width: auto;
+    width: 100%;
     border: transparent;
     border-radius: 12px;
-    max-width: 80%;
+    max-width: 80vw;
     margin: 20px auto;
     box-sizing: border-box;
     padding: 16px 50px;
@@ -179,6 +179,8 @@ h1{
     text-align: center;
     width: 100%;
     box-sizing: border-box;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .weekdays {
@@ -197,6 +199,12 @@ h1{
     box-sizing: border-box;
 }
 
+.weekdays, .weekday {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .date {
     display: flex;
     align-items: center;
@@ -207,6 +215,14 @@ h1{
     padding-bottom: 50px;
     border: 1px solid var(--current-secondary);
     box-sizing: border-box;
+}
+
+.weekday,
+.date {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .date-inactive {
@@ -344,24 +360,6 @@ h1{
 
 /* Media Queries */
 
-@media (max-width: 400px) {
-    .calendar {
-        width: 95%;
-        padding: 10px;
-    }
-
-    .month {
-        font-size: 28px;
-    }
-
-    .weekdays div {
-        font-size: clamp(10px, 2.5vw, 14px);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}
-
 @media (max-width: 600px) {
     .header {
         display: flex;
@@ -402,5 +400,23 @@ h1{
         justify-content: center;
         align-items: center;
         border: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .calendar {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .month {
+        font-size: 28px;
+    }
+
+    .weekdays div {
+        font-size: clamp(10px, 2.5vw, 14px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
