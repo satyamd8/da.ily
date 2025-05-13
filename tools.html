@@ -33,7 +33,20 @@
             </div>
             <!-- We want to display an acutal timer -->
             <div class="timer">
-                <h1 class="clock">25:00</h1>
+                <div class="time-adjust">
+                    <h1 class="clock">25:00</h1>
+                </div>
+                <div>
+                    <button onclick="adjustTime('min', 1)">▲</button>
+                    <p class="minutes-label">min</p>
+                    <button onclick="adjustTime('min', -1)">▼</button>
+
+                </div>
+                <div class="time-adjust">
+                    <button onclick="adjustTime('sec', 1)">▲</button>
+                    <p class="seconds-label">sec</p>
+                    <button onclick="adjustTime('sec', -1)">▼</button>
+                </div>
             </div>
             <div class="buttons">
                 <button onclick="reset()">
