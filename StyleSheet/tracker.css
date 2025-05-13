@@ -22,7 +22,7 @@
     --class-color-water: #5082E0;
     --club-color-water: #8ED1FC;
   
-    --class-color-earth: #c6f1c0;
+    --class-color-earth: #A0522D;
     --club-color-earth: #228B22;
   
     --class-color-sunset: #FF7E5F;
@@ -257,8 +257,8 @@ main {
 }
 
 .active-task {
-  background-color: #e6d7ec !important;
-  border-left: 4px solid #826189;
+  background-color: #ebebeb !important;
+  border-left: 4px solid #7e7e7e;
 }
 
 .time-spent {
