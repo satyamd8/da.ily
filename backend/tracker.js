@@ -1,4 +1,4 @@
-// Enhanced tracker.js with persistent stopwatch
+// Enhanced tracker.js with persistent stopwatch and double-click protection
 
 // Use localStorage to track stopwatch state across page loads
 let stopwatchRunning = false;
@@ -19,6 +19,9 @@ const taskCountData = {
     club: JSON.parse(localStorage.getItem('taskCountData_monthly_club') || '[0, 0, 0, 0]')
   }
 };
+
+// Flag to prevent multiple double-clicks
+let processingDoubleClick = false;
 
 // Stopwatch with timestamp-based tracking instead of interval counting
 const stopwatchDisplay = document.getElementById('stopwatch-display');
@@ -196,7 +199,8 @@ function saveTasksToLocalStorage() {
       name: taskEl.dataset.name,
       type: taskEl.dataset.type,
       category: taskEl.dataset.category,
-      totalSeconds: parseInt(taskEl.dataset.totalSeconds || '0')
+      totalSeconds: parseInt(taskEl.dataset.totalSeconds || '0'),
+      completed: taskEl.dataset.completed === 'true'
     });
   });
   
@@ -210,7 +214,8 @@ function saveTasksToLocalStorage() {
       name: taskEl.dataset.name,
       type: taskEl.dataset.type,
       category: taskEl.dataset.category,
-      totalSeconds: parseInt(taskEl.dataset.totalSeconds || '0')
+      totalSeconds: parseInt(taskEl.dataset.totalSeconds || '0'),
+      completed: true
     });
   });
   
@@ -232,6 +237,9 @@ function loadTasksFromLocalStorage() {
     const li = createTaskElement(task);
     // Remove click handler for completed tasks
     li.removeEventListener('click', handleTaskClick);
+    li.removeEventListener('dblclick', handleTaskComplete);
+    li.style.pointerEvents = 'none';
+    li.dataset.completed = 'true';
     finishedTaskList.appendChild(li);
   });
   
@@ -257,6 +265,7 @@ function createTaskElement(task) {
   li.dataset.type = task.type;
   li.dataset.category = task.category;
   li.dataset.totalSeconds = task.totalSeconds || '0';
+  li.dataset.completed = task.completed ? 'true' : 'false';
   
   // Add time display if time has been tracked
   if (task.totalSeconds > 0) {
@@ -266,13 +275,26 @@ function createTaskElement(task) {
     li.appendChild(timeElement);
   }
   
-  // Add click event to select task for stopwatch
-  li.addEventListener('click', handleTaskClick);
-  
-  // Add double-click event to move task to finished list
-  li.addEventListener('dblclick', handleTaskComplete);
+  // Add click event to select task for stopwatch (only for active tasks)
+  if (!task.completed) {
+    li.addEventListener('click', handleTaskClick);
+    
+    // Add double-click event to move task to finished list (only for active tasks)
+    li.addEventListener('dblclick', handleTaskComplete);
+  } else {
+    // Apply completed task styling
+    li.style.pointerEvents = 'none';
+  }
   
   return li;
+}
+
+// Function to style completed tasks consistently
+function applyCompletedTaskStyling(taskElement) {
+  taskElement.style.boxShadow = 'none';
+  taskElement.style.pointerEvents = 'none';
+  taskElement.style.cursor = 'default';
+  taskElement.style.borderLeft = 'none';
 }
 
 function handleTaskClick(e) {
@@ -303,12 +325,35 @@ function handleTaskClick(e) {
   resetStopwatch();
 }
 
+// Find the handleTaskComplete function in your tracker.js file
+// Modify the function by adding the following code to fix styling issues
 function handleTaskComplete(e) {
+  // Check if task is already marked as completed or being processed
+  if (this.dataset.completed === 'true' || processingDoubleClick) {
+    e.preventDefault();
+    e.stopPropagation();
+    return;
+  }
+  
+  // Set flag to prevent multiple double-clicks
+  processingDoubleClick = true;
+  
   // Make sure stopwatch is stopped
   if (stopwatchRunning && activeTaskItem === this) {
     stopStopwatch();
   }
   
+  // Mark as completed
+  this.dataset.completed = 'true';
+  
+  // Apply completed task styling immediately
+  this.classList.remove('active-task');
+  this.style.boxShadow = 'none';
+  this.style.borderLeft = 'none';
+  this.style.backgroundColor = '#fff';
+  this.style.pointerEvents = 'none';
+  
+  // Move to finished list
   finishedTaskList.appendChild(this);
   
   // Get task type ('class' or 'club')
@@ -342,11 +387,17 @@ function handleTaskComplete(e) {
     localStorage.removeItem('active_task_id');
   }
   
-  // Remove the click handler to prevent timing completed tasks
+  // Remove the click handlers to prevent further interaction
   this.removeEventListener('click', handleTaskClick);
+  this.removeEventListener('dblclick', handleTaskComplete);
   
   // Save updated task lists
   saveTasksToLocalStorage();
+  
+  // Reset double-click processing flag after a short delay
+  setTimeout(() => {
+    processingDoubleClick = false;
+  }, 500);
 }
 
 // Initialize page on load
@@ -414,7 +465,8 @@ taskForm.addEventListener('submit', (e) => {
       name: name,
       type: type,
       category: category,
-      totalSeconds: 0
+      totalSeconds: 0,
+      completed: false
     };
     
     const li = createTaskElement(task);
@@ -508,7 +560,7 @@ let pieChart = new Chart(pieCtx, {
             const seconds = context.raw;
             const hours = Math.floor(seconds / 3600);
             const minutes = Math.floor((seconds % 3600) / 60);
-            return `${context.label}: ${hours}h ${minutes}m`;
+            return `${context.labels}: ${hours}h ${minutes}m`;
           }
         }
       }
