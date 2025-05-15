@@ -298,7 +298,8 @@ main {
 .add-photo,
 .add-btn,
 .save-btn,
-.delete-btn {
+.delete-btn,
+.reset-btn {
   border: none;
   border-radius: 20px;
   height: 30px;
@@ -314,7 +315,8 @@ main {
 
 .add-photo:hover,
 .add-btn:hover,
-.save-btn:hover {
+.save-btn:hover,
+.reset-btn:hover {
   background: var(--current-primary);
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

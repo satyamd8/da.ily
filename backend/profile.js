@@ -155,6 +155,19 @@ function saveProfileData() {
     updateTasksCompletedDisplay();
 }
 
+// Function to reset profile data in localStorage
+function resetProfileData() {
+    localStorage.clear()
+}
+
+const resetButton = document.getElementById('reset-profile');
+
+resetButton.addEventListener('click', () => {
+    resetProfileData();  // Call the reset function when the button is clicked
+    alert("Profile data has been reset!");
+    location.reload();
+});
+
 // Function to load profile data from localStorage
 function loadProfileData() {
     const savedData = localStorage.getItem('dailyProfileData');
