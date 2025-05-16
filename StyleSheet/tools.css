@@ -1,3 +1,4 @@
+/* tools.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Quicksand:wght@300..700&display=swap');
 
 :root {
@@ -21,27 +22,24 @@ button, input, select, option, textarea {
     font-family: inherit;
 }
 
-body{
+body {
     margin: 0;
     font-family: var(--quicksand);
-
     background-image: url("/img/Dawn.svg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-
     color: var(--current-primary);
 }
+
 p {
     margin: 0;
 }
 
-/* Nav Bar */
 header {
     display: flex;
     justify-content: left;
     align-items: center;
-
     text-align: right;
     height: 50px;
     margin: 8px;
@@ -52,37 +50,27 @@ header h3 {
     color: var(--current-primary);
 }
 
-nav ul{
+nav ul {
     font-size: 16px;
-
     list-style: none;
     display: flex;
     flex-direction: row;
-
-    gap:30px;
+    gap: 30px;
 }
 
-nav a{
+nav a {
     color: var(--current-primary);
     text-decoration: none;
     font-weight: 600;
-
     padding: 5px 10px;
     border-radius: 12px;
     transition: all 0.2s ease-out;
 }
 
-nav a:hover{
+nav a:hover {
     background-color: var(--current-secondary);
     color: white;
 }
-
-
-/*
-----------
-Tools Page
-----------
-*/
 
 main {
     display: flex;
@@ -101,10 +89,8 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     height: 63vh;
     width: 100%;
-
     font-size: 48px;
     font-weight: 600;
 }
@@ -119,11 +105,9 @@ main {
 .adjust {
     position: absolute;
     right: 600px;
-
     display: flex;
     flex-direction: row;
     align-items: center;
-
     gap: 30px;
 }
 
@@ -131,7 +115,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     margin: 0;
     font-size: 30px;
     font-weight: 400;
@@ -177,7 +160,6 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 60px;
     height: 40px;
     background-color: var(--current-secondary);
@@ -188,11 +170,10 @@ main {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 4px 12px 0 rgba(0,0,0,0.10), 0 2px 4px 0 rgba(0,0,0,0.12);
-
     transition: 0.3s ease-in;
 }
 
-.playpause_button, .replay_button{
+.playpause_button, .replay_button {
     height: 25px;
     width: 25px;
 }
@@ -202,17 +183,32 @@ main {
     transition: 0.3s ease-out;
 }
 
+.stage-switcher {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
 
-/*
-Tools Section
-*/
+.stage-switcher button {
+    padding: 5px 15px;
+    background-color: var(--current-secondary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.stage-switcher button:hover {
+    background-color: var(--current-primary);
+}
 
 .tools {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
     height: 30vh;
     width: 100%;
 }
@@ -222,7 +218,6 @@ Tools Section
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     width: 30%;
     height: 100%;
     gap: 10px;
@@ -233,24 +228,21 @@ Tools Section
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     width: 70%;
     height: 100%;
 }
 
-#note{
+#note {
     width: 1000px;
     height: 225px;
     font-size: 16px;
-    padding: 10px;  /* Adds space inside the textarea */
-    text-align: left; /* Aligns text to the left */
-    vertical-align: top; /* Aligns text to the top */
-    line-height: 1.5; /* Adjusts spacing between lines */
-    resize: none; /* Prevents manual resizing */
-
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.5;
+    resize: none;
     border: 4px solid var(--current-secondary);
     border-radius: 12px;
-
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 0 10px var(--current-primary);
     transition: all 0.3s ease;
@@ -261,4 +253,28 @@ Tools Section
     box-shadow: 0 0 20px var(--current-secondary);
     background-color: rgba(255, 255, 255, 0.7);
     outline: none;
+}
+
+.stage-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.stage-buttons button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: var(--current-secondary);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease-in-out;
+}
+
+.stage-buttons button:hover {
+    transform: scale(1.05);
+    background-color: var(--current-primary);
 }

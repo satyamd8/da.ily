@@ -1,5 +1,6 @@
-let stages = ["study", "break", "long study", "long break"];
-let stagesTime = ["25:00", "5:00", "35:00", "15:00"];
+// tools.js
+let stages = ["study", "break", "long break"];
+let stagesTime = ["25:00", "5:00", "15:00"];
 let index = 0;
 let intervalId;
 let timeLeft;
@@ -12,6 +13,7 @@ function initializeTimer() {
     const [mins, secs] = conversion(stagesTime[index]);
     timeLeft = mins * 60 + secs;
     updateDisplay();
+    current.textContent = stages[index];
 }
 
 // Start/Pause Timer
@@ -34,7 +36,7 @@ function reset() {
 
 // Adjust study time (+1 / -1 min) or (+5 / -5 sec)
 function adjustTime(type, value) {
-    let [min, sec] = conversion(stagesTime[0]); // Always adjust study time (index 0)
+    let [min, sec] = conversion(stagesTime[0]);
 
     if (type === 'min') {
         min = Math.max(0, min + value);
@@ -53,15 +55,14 @@ function adjustTime(type, value) {
         }
     }
 
-    stagesTime[0] = formatTime(min * 60 + sec); // Update study time string
+    stagesTime[0] = formatTime(min * 60 + sec);
 
     // Dynamically adjust break, long study & long break (40% of study time)
     let extraTime = Math.round((min * 60 + sec) * 0.4);
-    stagesTime[1] = formatTime(extraTime); // break
-    stagesTime[2] = formatTime(extraTime); // long study
-    stagesTime[3] = formatTime(extraTime); // long break
+    stagesTime[1] = formatTime(extraTime);
+    stagesTime[2] = formatTime(extraTime);
+    stagesTime[3] = formatTime(extraTime);
 
-    // Re-initialize current timer if on study
     if (current.textContent === "study") {
         initializeTimer();
     }
@@ -76,9 +77,7 @@ function timer() {
             timeLeft--;
             updateDisplay();
         } else {
-            // Switch to next stage
             index = (index + 1) % stages.length;
-            current.textContent = stages[index];
             initializeTimer();
         }
     }, 1000);
@@ -104,5 +103,30 @@ function formatTime(totalSeconds) {
     return `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
 }
 
-// Initialize first load
+// Manual stage switching buttons
+function switchToStage(stageName) {
+    const targetIndex = stages.indexOf(stageName);
+    if (targetIndex !== -1) {
+        index = targetIndex;
+        initializeTimer();
+    }
+}
+
+
+// Go to next stage
+function nextStage() {
+    index = (index + 1) % stages.length;
+    current.textContent = stages[index];
+    initializeTimer();
+    console.log(`Moved to next stage: ${stages[index]}`);
+}
+
+// Go to previous stage
+function prevStage() {
+    index = (index - 1 + stages.length) % stages.length;
+    current.textContent = stages[index];
+    initializeTimer();
+    console.log(`Moved to previous stage: ${stages[index]}`);
+}
+
 initializeTimer();
