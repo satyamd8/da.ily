@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: Quicksand-SemiBold, Quicksand;
+        font-size: 147.98px;
+        font-variation-settings: 'wght' 600;
+        font-weight: 600;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="100" y1="200" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c8b6ff"/>
+      <stop offset=".28" stop-color="#d2b8f5"/>
+      <stop offset=".78" stop-color="#f0bedd"/>
+      <stop offset="1" stop-color="#ffc2d1"/>
+    </linearGradient>
+  </defs>
+  <g id="icon">
+    <g>
+      <rect class="cls-1" x="0" y="0" width="200" height="200" rx="64.47" ry="64.47"/>
+      <text class="cls-2" transform="translate(51.22 146.54) scale(1.06 1)"><tspan x="0" y="0">d</tspan></text>
+    </g>
+  </g>
+</svg>
