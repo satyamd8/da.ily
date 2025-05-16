@@ -22,7 +22,6 @@ button, input, select, option, textarea {
 }
 
 body{
-    height: 100vh;
     margin: 0;
     font-family: var(--quicksand);
 
@@ -33,12 +32,8 @@ body{
 
     color: var(--current-primary);
 }
-button{
-    border: none;
-    border-radius: 20px;
-    height: 30px;
-    width: 50px;
-    background-color: var(--current-secondary);
+p {
+    margin: 0;
 }
 
 /* Nav Bar */
@@ -82,60 +77,86 @@ nav a:hover{
     color: white;
 }
 
-.toolBody{
-    display: grid;
-    grid-template-areas: 
-    "top-left top-middle top-right"
-    "middle-left middle-middle middle-right"
-    "footer footer footer "
-}
-.header{
+
+/*
+----------
+Tools Page
+----------
+*/
+
+main {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    grid-area: top-middle;
-    text-align: center;
 }
-.timer-section{
-    grid-area: middle-middle;
+
+.header {
+    position: absolute;
+    top: 25px;
+}
+
+.timer-section {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+
+    height: 63vh;
+    width: 100%;
+
+    font-size: 48px;
+    font-weight: 600;
 }
+
 .timer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.adjust {
+    position: absolute;
+    right: 600px;
+
     display: flex;
     flex-direction: row;
     align-items: center;
+
     gap: 30px;
-    justify-content: center;
 }
 
 .time-adjust {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+
+    margin: 0;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.clock {
+    font-size: 150px;
+    margin: 0;
 }
 
 .time-adjust button {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 25px;
     background-color: var(--current-secondary);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s;
+    box-shadow: 0 4px 12px 0 rgba(0,0,0,0.10), 0 2px 4px 0 rgba(0,0,0,0.12);
 }
 
 .time-adjust button:hover {
-    background-color: var(--current-primary);
-}
-
-.time-adjust h1.clock {
-    margin: 0;
-    font-size: 48px;
+    box-shadow: 0 6px 16px 0 rgba(0,0,0,0.15);
 }
 
 .seconds-label .minutes-label {
@@ -143,26 +164,83 @@ nav a:hover{
     font-weight: bold;
     margin: 0;
 }
-.footer{
-    padding: 10px;
-    grid-area: footer;
+
+.buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
+
+.buttons button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 60px;
+    height: 40px;
+    background-color: var(--current-secondary);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px 0 rgba(0,0,0,0.10), 0 2px 4px 0 rgba(0,0,0,0.12);
+
+    transition: 0.3s ease-in;
+}
+
 .playpause_button, .replay_button{
     height: 25px;
     width: 25px;
 }
 
-.playpause_button{
-    filter: invert(0%) brightness(0%);
+.buttons button:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease-out;
+}
+
+
+/*
+Tools Section
+*/
+
+.tools {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    height: 30vh;
+    width: 100%;
+}
+
+.music {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 30%;
+    height: 100%;
+    gap: 10px;
+}
+
+.notes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 70%;
+    height: 100%;
 }
 
 #note{
-    width: 750px;
-    height: 500px;
+    width: 1000px;
+    height: 225px;
     font-size: 16px;
     padding: 10px;  /* Adds space inside the textarea */
     text-align: left; /* Aligns text to the left */

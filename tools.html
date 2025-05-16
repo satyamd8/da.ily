@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="StyleSheet/tools.css">
+    <link rel="stylesheet" href="/StyleSheet/tools.css">
     <script src="backend/preferences.js" defer></script>
     <title>da.ily_tools</title>
 </head>
 <body>
+    <audio id="click-sound" src="click.mp3" preload="auto"></audio>
     <header>
         <h3>da.ily</h3>
         <nav>
@@ -20,64 +21,67 @@
             </ul>
         </nav>
     </header>
-    <div class="toolBody">
+    <main>
         <div class="header">
             <h1>Pomodoro Timer</h1>
         </div>
+
         <div class="timer-section">
-            <!-- here we want to make a animation where it switchs everytime time is up -->
             <div class="stages">
                 <p id="current">study</p>
                 <!-- <p>break</p>
                 <p>long break</p> -->
             </div>
-            <!-- We want to display an acutal timer -->
-            <div class="timer">
-                <div class="time-adjust">
-                    <h1 class="clock">25:00</h1>
-                </div>
-                <div>
-                    <button onclick="adjustTime('min', 1)">▲</button>
-                    <p class="minutes-label">min</p>
-                    <button onclick="adjustTime('min', -1)">▼</button>
 
-                </div>
-                <div class="time-adjust">
-                    <button onclick="adjustTime('sec', 1)">▲</button>
-                    <p class="seconds-label">sec</p>
-                    <button onclick="adjustTime('sec', -1)">▼</button>
+            <div class="timer">
+                <h1 class="clock">25:00</h1>
+
+                <div class="adjust">
+                    <div class="time-adjust">
+                        <button onclick="adjustTime('min', 1)">▲</button>
+                        <p class="minutes-label">min</p>
+                        <button onclick="adjustTime('min', -1)">▼</button>
+                    </div>
+                    <div class="time-adjust">
+                        <button onclick="adjustTime('sec', 1)">▲</button>
+                        <p class="seconds-label">sec</p>
+                        <button onclick="adjustTime('sec', -1)">▼</button>
+                    </div>
                 </div>
             </div>
+
             <div class="buttons">
                 <button onclick="reset()">
-                    <img src="/img/replay.png" alt="Button Image" class="replay_button">
+                    <img src="/img/replay.svg" class="replay_button">
                 </button>
+
                 <button onclick="playPause()">
-                    <img src="/img/playpause.png" alt="Button Image" class="playpause_button">
+                    <img src="/img/play.svg" class="playpause_button">
                 </button>
             </div>
         </div>
-        <div class="footer">
-            <div class="widgets">
-                <iframe 
-                    style = "border-radius: 12px;"
-                    id="youtubePlayer"
-                    width="450" 
-                    height="250" 
-                    src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1" 
-                    frameborder="0" 
-                    allow="autoplay" 
-                    allowfullscreen>
-                </iframe>
+        
+        <div class="tools">
+            <div class="music">
                 <iframe 
                     style="border-radius:12px" 
                     src="https://open.spotify.com/embed/album/3mH6qwIy9crq0I9YQbOuDf?utm_source=generator" 
                     width="60%" 
-                    height="151" 
+                    height="80" 
                     frameBorder="0" 
                     allowfullscreen="" 
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                     loading="lazy">
+                </iframe>
+                <iframe 
+                    style = "border-radius: 12px;"
+                    id="youtubePlayer"
+                    width="60%" 
+                    height="150" 
+                    src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1" 
+                    frameborder="0" 
+                    allow="autoplay" 
+                    allowfullscreen>
                 </iframe>
             </div>
             <div class="notes">
@@ -86,8 +90,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </main>
     <script src="backend/tools.js"></script>
-
 </body>
 </html>
