@@ -3,6 +3,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const clickSound = document.getElementById("click-sound");
     if (clickSound) clickSound.volume = 0.4;
 
+    //save sound setting
+    const soundToggle = document.getElementById("switch");
+    if (soundToggle) {
+        // Load saved mute state
+        const savedMute = localStorage.getItem('muteSound');
+        if (savedMute !== null) {
+            soundToggle.checked = savedMute === 'true';
+        }
+
+        // Save mute state on change
+        soundToggle.addEventListener('change', function() {
+            localStorage.setItem('muteSound', soundToggle.checked);
+        });
+    }
+
     document.addEventListener('mousedown', function (event) {
         const target = event.target;
         if (target.tagName === 'BUTTON' || 
@@ -153,6 +168,7 @@ function changeFont(font) {
 function loadPreferences() {
     const savedTheme = localStorage.getItem('selectedTheme');
     const savedFont = localStorage.getItem('selectedFont');
+    const savedMute = localStorage.getItem('muteSound');
 
     //load themes
     if (savedTheme) {
@@ -171,6 +187,16 @@ function loadPreferences() {
     } else {
         console.log('No saved font, using default (quicksand)');
         changeFont('Quicksand');
+    }
+
+    // load mute state and apply to all audio/video
+    if (savedMute !== null) {
+        muteAllAudio(savedMute === 'true');
+        // Also update the toggle if it exists
+        const soundToggle = document.getElementById("switch");
+        if (soundToggle) {
+            soundToggle.checked = savedMute === 'true';
+        }
     }
 }
 

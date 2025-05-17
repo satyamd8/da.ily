@@ -76,11 +76,20 @@ function adjustTime(type, value) {
 
 // Countdown Timer Logic (keeps timer paused when switching stage)
 function timer() {
+    const timerEnd = document.getElementById("timer-end");
+    timerEnd.volume = 0.25;
+
     intervalId = setInterval(() => {
         if (timeLeft > 0) {
             timeLeft--;
             updateDisplay();
         } else {
+            //checks if sound is muted to play timer end audio
+            const mute = localStorage.getItem('muteSound') === 'true';
+            if (!mute) {
+                timerEnd.play();
+            }
+
             clearInterval(intervalId);
             intervalId = null;
 
@@ -201,3 +210,25 @@ function prevStage() {
 }
 
 initializeTimer();
+
+document.addEventListener('DOMContentLoaded', function () {
+    const focusBtn = document.getElementById('focus');
+    const nav = document.querySelector('nav');
+
+    focusBtn.addEventListener('click', function () {
+        const elem = document.documentElement;
+        if (!document.fullscreenElement) {
+            elem.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    });
+
+    document.addEventListener('fullscreenchange', function () {
+        if (document.fullscreenElement) {
+            nav.classList.add('hide-nav');
+        } else {
+            nav.classList.remove('hide-nav');
+        }
+    });
+});

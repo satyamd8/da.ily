@@ -22,6 +22,10 @@ button, input, select, option, textarea {
     font-family: inherit;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
     font-family: var(--quicksand);
@@ -76,6 +80,10 @@ nav a:hover {
     color: white;
 }
 
+.hide-nav {
+    display: none !important;
+}
+
 /*
 ----------
 Tools Page
@@ -88,6 +96,8 @@ main {
     justify-content: center;
     align-items: center;
 }
+
+
 
 .header {
     position: absolute;
@@ -272,6 +282,10 @@ Tools Section
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: 0.2s ease-in-out;
+}
+
+#focus {
+    border-radius: 10px;
 }
 
 .stage-buttons button:hover {
