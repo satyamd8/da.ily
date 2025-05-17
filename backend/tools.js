@@ -5,6 +5,8 @@ let index = 0;
 let intervalId;
 let timeLeft;
 
+let pomodoroCount = 0; //counts pomodoro cycles before long break
+
 const current = document.getElementById("current");
 const displayTimer = document.querySelector(".clock");
 
@@ -55,13 +57,15 @@ function adjustTime(type, value) {
         }
     }
 
-    stagesTime[0] = formatTime(min * 60 + sec);
+    let studyTime = (min * 60 + sec);
+    stagesTime[0] = formatTime(studyTime);
 
-    // Dynamically adjust break, long study & long break (40% of study time)
-    let extraTime = Math.round((min * 60 + sec) * 0.4);
-    stagesTime[1] = formatTime(extraTime);
-    stagesTime[2] = formatTime(extraTime);
-    stagesTime[3] = formatTime(extraTime);
+    // Dynamically adjust break, long study & long break (short break = 20%, long break = 60% of study time)
+    let shortBreak = Math.floor(studyTime * 0.2);
+    let longBreak = Math.floor(studyTime * 0.6)
+
+    stagesTime[1] = formatTime(shortBreak);
+    stagesTime[2] = formatTime(longBreak);
 
     if (current.textContent === "study") {
         initializeTimer();
@@ -70,15 +74,36 @@ function adjustTime(type, value) {
     console.log(`Updated stagesTime: ${stagesTime}`);
 }
 
-// Countdown Timer Logic
+// Countdown Timer Logic (keeps timer paused when switching stage)
 function timer() {
     intervalId = setInterval(() => {
         if (timeLeft > 0) {
             timeLeft--;
             updateDisplay();
         } else {
-            index = (index + 1) % stages.length;
+            clearInterval(intervalId);
+            intervalId = null;
+
+            //switches to long break after 4 cycles of study and short break
+            if (stages[index] =="study") {
+                pomodoroCount++;
+
+                if (pomodoroCount % 4 === 0) {
+                    index = stages.indexOf("long break");
+                }
+                else {
+                    index = stages.indexOf("break");
+                }
+            }
+            else {
+                if (stages[index] === "long break") {
+                    pomodoroCount = 0;
+                }
+                index = stages.indexOf("study");
+            }
+
             initializeTimer();
+            console.log("${stages[index]} is ready to start")
         }
     }, 1000);
 }
@@ -87,7 +112,11 @@ function timer() {
 function updateDisplay() {
     let min = Math.floor(timeLeft / 60);
     let sec = timeLeft % 60;
-    displayTimer.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+    let formattedTime = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+    displayTimer.textContent = formattedTime;
+
+    //updates tab name to show timer
+    document.title = `${formattedTime} | ${stages[index][0].toUpperCase() + stages[index].slice(1)}`;
 }
 
 // Convert "MM:SS" to [min, sec]
@@ -115,7 +144,28 @@ function switchToStage(stageName) {
 
 // Go to next stage
 function nextStage() {
-    index = (index + 1) % stages.length;
+    //pause
+    clearInterval(intervalId);
+    intervalId = null;
+
+    //switches to long break after 4 cycles of study and short break
+    if (stages[index] =="study") {
+        pomodoroCount++;
+
+        if (pomodoroCount % 4 === 0) {
+            index = stages.indexOf("long break");
+        }
+        else {
+            index = stages.indexOf("break");
+        }
+    }
+    else {
+        if (stages[index] === "long break") {
+            pomodoroCount = 0;
+        }
+        index = stages.indexOf("study");
+    }
+
     current.textContent = stages[index];
     initializeTimer();
     console.log(`Moved to next stage: ${stages[index]}`);
@@ -123,7 +173,28 @@ function nextStage() {
 
 // Go to previous stage
 function prevStage() {
-    index = (index - 1 + stages.length) % stages.length;
+    //pause
+    clearInterval(intervalId);
+    intervalId = null;
+    
+    //switches to long break after 4 cycles of study and short break
+    if (stages[index] =="study") {
+        pomodoroCount++;
+
+        if (pomodoroCount % 4 === 0) {
+            index = stages.indexOf("long break");
+        }
+        else {
+            index = stages.indexOf("break");
+        }
+    }
+    else {
+        if (stages[index] === "long break") {
+            pomodoroCount = 0;
+        }
+        index = stages.indexOf("study");
+    }
+
     current.textContent = stages[index];
     initializeTimer();
     console.log(`Moved to previous stage: ${stages[index]}`);
