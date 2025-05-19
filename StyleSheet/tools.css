@@ -340,6 +340,7 @@ Tools Section
     border: 4px solid var(--current-secondary);
     border-radius: 12px;
     background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
     box-shadow: 0 0 10px var(--current-primary);
     transition: all 0.3s ease;
 }
