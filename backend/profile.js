@@ -160,7 +160,7 @@ function resetProfileData() {
     localStorage.clear()
 }
 
-const resetButton = document.getElementById('reset-profile');
+const resetButton = document.getElementById('reset-data');
 
 resetButton.addEventListener('click', () => {
     resetProfileData();  // Call the reset function when the button is clicked
