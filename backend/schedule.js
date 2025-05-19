@@ -6,18 +6,26 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function scheduleSessionNotification(event) {
-    if ('Notification' in window && Notification.permission === 'granted') {
-        const eventDateTime = new Date(`${event.date}T${event.time}`);
-        const now = new Date();
-        const delay = eventDateTime - now;
+    if ('Notification' in window) {
+        console.log('Notification API supported');
+        console.log('Notification permission:', Notification.permission);
 
-        if (delay > 0) {
-            setTimeout(() => {
-                new Notification('Session Starting!', {
-                    body: `Your session "${event.subject}" is starting now.`,
-                    icon: '/img/icon.svg'
-                });
-            }, delay);
+        if (Notification.permission === 'granted') {
+            const eventDateTime = new Date(`${event.date}T${event.time}`);
+            const now = new Date();
+            const delay = eventDateTime - now;
+            console.log('Scheduling notification in', delay, 'ms');
+
+            if (delay > 0) {
+                setTimeout(() => {
+                    new Notification('Session Starting!', {
+                        body: `Your session "${event.subject}" is starting now.`,
+                        icon: '/img/icon.svg'
+                    });
+                }, delay);
+            } else {
+                console.log('Event time is in the past or now, not scheduling notification.');
+            }
         }
     }
 }

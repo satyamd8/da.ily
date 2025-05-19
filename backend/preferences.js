@@ -48,30 +48,30 @@ const themes = {
     dawn: {
         primary: "var(--dawn)",
         secondary: "var(--dawn2)",
-        image: "/img/Dawn.svg"
+        image: "/da.ily/img/Dawn.svg"
     },
     water: {
         primary: 'var(--water)',
         secondary: 'var(--water2)',
         image: {
-            desktop: '/img/Water.svg',
-            tablet: '/img/Water-tablet.svg',
-            mobile: '/img/Water-mobile.svg'
+            desktop: '/da.ily/img/Water.svg',
+            tablet: '/da.ily/img/Water-tablet.svg',
+            mobile: '/da.ily/img/Water-mobile.svg'
         }
     },
     earth: {
         primary: 'var(--earth)',
         secondary: 'var(--earth2)',
         image: {
-            desktop: '/img/Earth.svg',
-            tablet: '/img/Earth-tablet.svg',
-            mobile: '/img/Earth-mobile.svg'
+            desktop: '/da.ily/img/Earth.svg',
+            tablet: '/da.ily/img/Earth-tablet.svg',
+            mobile: '/da.ily/img/Earth-mobile.svg'
         }
     },
     sunset: {
         primary: 'white',
         secondary: 'var(--sunset)',
-        image: '/img/Sunset.svg'
+        image: '/da.ily/img/Sunset.svg'
     }
 };
 
