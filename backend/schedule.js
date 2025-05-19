@@ -1,3 +1,29 @@
+//session notifications
+document.addEventListener('DOMContentLoaded', function() {
+    if ('Notification' in window && Notification.permission !== 'granted') {
+        Notification.requestPermission();
+    }
+});
+
+function scheduleSessionNotification(event) {
+    if ('Notification' in window && Notification.permission === 'granted') {
+        const eventDateTime = new Date(`${event.date}T${event.time}`);
+        const now = new Date();
+        const delay = eventDateTime - now;
+
+        if (delay > 0) {
+            setTimeout(() => {
+                new Notification('Session Starting!', {
+                    body: `Your session "${event.subject}" is starting now.`,
+                    icon: '/img/icon.svg'
+                });
+            }, delay);
+        }
+    }
+}
+
+
+
 const month_year = document.getElementById('month');
 const days = document.getElementById('days');
 const prevBtn = document.getElementById('prev-btn');
@@ -132,6 +158,8 @@ form.addEventListener('submit', (e) => {
 
     events.push(newEvent);
     localStorage.setItem('events', JSON.stringify(events));
+
+    scheduleSessionNotification(newEvent);
 
     form.reset();
     sessions.style.display = "none";

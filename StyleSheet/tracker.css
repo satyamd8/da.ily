@@ -216,7 +216,7 @@ main {
 #stopwatch-display {
   font-size: 2.5rem;
   font-weight: bold;
-  color: var(--current-primary);
+  color: var(--current-secondary);
   margin-top: 0.5rem;
 }
 
