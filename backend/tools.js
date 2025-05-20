@@ -151,62 +151,99 @@ function switchToStage(stageName) {
 }
 
 
-// Go to next stage
+const stagesBar = document.getElementById("stages-bar");
+
+//handle active stage name switching
+function renderStagesBar(prevIndex = null) {
+    stagesBar.innerHTML = '';
+    stages.forEach((stage, i) => {
+        const span = document.createElement('span');
+        span.textContent = stage;
+        span.classList.add('stage-name');
+        if (i === index) {
+            span.classList.add('active');
+            if (prevIndex !== null && prevIndex !== index) {
+                span.classList.add('animate-in');
+                setTimeout(() => span.classList.remove('animate-in'), 300);
+            }
+        }
+        //click stage names to switch
+        span.onclick = () => {
+            if (index !== i) {
+                const oldIndex = index;
+                index = i;
+                initializeTimer(oldIndex);
+            }
+        };
+        stagesBar.appendChild(span);
+    });
+}
+
+function initializeTimer(prevIndex = null) {
+    const [mins, secs] = conversion(stagesTime[index]);
+    timeLeft = mins * 60 + secs;
+    updateDisplay();
+    renderStagesBar(prevIndex);
+}
+
+
 function nextStage() {
-    //pause
     clearInterval(intervalId);
     intervalId = null;
 
     //switches to long break after 4 cycles of study and short break
+    let prevIndex = index;
     if (stages[index] =="study") {
         pomodoroCount++;
 
         if (pomodoroCount % 4 === 0) {
             index = stages.indexOf("long break");
-        }
-        else {
+        } else {
             index = stages.indexOf("break");
         }
-    }
-    else {
+    } else {
         if (stages[index] === "long break") {
             pomodoroCount = 0;
         }
         index = stages.indexOf("study");
     }
 
-    current.textContent = stages[index];
-    initializeTimer();
+    initializeTimer(prevIndex);
     console.log(`Moved to next stage: ${stages[index]}`);
 }
 
-// Go to previous stage
 function prevStage() {
-    //pause
     clearInterval(intervalId);
     intervalId = null;
-    
+
     //switches to long break after 4 cycles of study and short break
+    let prevIndex = index;
     if (stages[index] =="study") {
         pomodoroCount++;
 
         if (pomodoroCount % 4 === 0) {
             index = stages.indexOf("long break");
-        }
-        else {
+        } else {
             index = stages.indexOf("break");
         }
-    }
-    else {
+    } else {
         if (stages[index] === "long break") {
             pomodoroCount = 0;
         }
         index = stages.indexOf("study");
     }
-
-    current.textContent = stages[index];
-    initializeTimer();
+    
+    initializeTimer(prevIndex);
     console.log(`Moved to previous stage: ${stages[index]}`);
+}
+
+function switchToStage(stageName) {
+    const targetIndex = stages.indexOf(stageName);
+    if (targetIndex !== -1) {
+        let prevIndex = index;
+        index = targetIndex;
+        initializeTimer(prevIndex);
+    }
 }
 
 initializeTimer();

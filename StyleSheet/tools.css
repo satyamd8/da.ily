@@ -199,6 +199,42 @@ main {
     font-weight: 600;
 }
 
+.stages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    gap: 32px;
+    font-size: 32px;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+
+.stage-name {
+    color: var(--current-primary);
+    opacity: 0.4;
+    transition: opacity 0.3s, color 0.3s, transform 0.3s;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.stage-name.active {
+    opacity: 1;
+    color: var(--current-primary);
+    transform: scale(1.15);
+}
+
+.stage-name.animate-in {
+    animation: stageIn 0.3s;
+}
+
+@keyframes stageIn {
+    from { transform: scale(0.8); opacity: 0.2; }
+    to   { transform: scale(1.15); opacity: 1; }
+}
+
 .timer {
     display: flex;
     flex-direction: row;
@@ -227,6 +263,8 @@ main {
 .clock {
     font-size: 150px;
     margin: 0;
+    width: 400px;
+    text-align: right;
 }
 
 .time-adjust button {
@@ -419,9 +457,15 @@ Tools Section
     }
     .clock {
         font-size: 100px;
+        width: 250px;
+        text-align: left;
     }
 
     .yt {
         height: auto;
+    }
+
+    .stages {
+        font-size: 22px;
     }
 }
