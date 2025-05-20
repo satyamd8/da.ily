@@ -64,14 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to update profile info
 function updateProfileInfo() {
     const name = document.getElementById('name').value;
-    const age = document.getElementById('age').value;
     const college = document.getElementById('college');
     const collegeName = college.options[college.selectedIndex].text;
     const major = document.getElementById('major').value;
     const year = document.getElementById('year');
     const yearText = year.options[year.selectedIndex].text;
     document.getElementById('card-name').textContent = name || 'Not set';
-    document.getElementById('card-age').textContent = age || 'Not set';
     document.getElementById('card-college').textContent = collegeName;
     document.getElementById('card-major').textContent = major || 'Not set';
     document.getElementById('card-year').textContent = yearText;
@@ -140,7 +138,6 @@ function updateCounts() {
 function saveProfileData() {
     const profileData = {
         name: document.getElementById('name').value,
-        age: document.getElementById('age').value,
         college: document.getElementById('college').value,
         major: document.getElementById('major').value,
         year: document.getElementById('year').value,
@@ -174,7 +171,6 @@ function loadProfileData() {
     if (savedData) {
         const profileData = JSON.parse(savedData);
         document.getElementById('name').value = profileData.name || '';
-        document.getElementById('age').value = profileData.age || '';
         document.getElementById('college').value = profileData.college || 'hunter';
         document.getElementById('major').value = profileData.major || '';
         document.getElementById('year').value = profileData.year || '1st';

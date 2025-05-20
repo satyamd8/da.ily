@@ -1,5 +1,3 @@
-// Enhanced tracker.js with persistent stopwatch and double-click protection
-
 // Use localStorage to track stopwatch state across page loads
 let stopwatchRunning = false;
 let activeTaskItem = null;
