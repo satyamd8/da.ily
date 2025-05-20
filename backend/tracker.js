@@ -20,6 +20,8 @@ const taskCountData = {
 
 // Flag to prevent multiple double-clicks
 let processingDoubleClick = false;
+// Flag to prevent multiple stop button clicks from adding time repeatedly
+let stopProcessed = false;
 
 // Stopwatch with timestamp-based tracking instead of interval counting
 const stopwatchDisplay = document.getElementById('stopwatch-display');
@@ -80,6 +82,8 @@ function startStopwatch() {
   
   if (!stopwatchRunning) {
     stopwatchRunning = true;
+    // Reset the stopProcessed flag when starting/resuming
+    stopProcessed = false;
     
     // Set the start time to now
     stopwatchStartTime = Date.now();
@@ -107,6 +111,11 @@ function startStopwatch() {
 }
 
 function stopStopwatch() {
+  // Prevent multiple stop actions from recording time repeatedly
+  if (stopProcessed) {
+    return;
+  }
+  
   if (stopwatchRunning) {
     stopwatchRunning = false;
     localStorage.setItem('stopwatch_running', 'false');
@@ -122,16 +131,22 @@ function stopStopwatch() {
     stopwatchStartBtn.textContent = 'Start';
   }
   
-  // Record time for the active task
-  if (activeTaskItem && stopwatchSeconds > 0) {
+  // Record time for the active task only if we haven't processed a stop yet
+  if (activeTaskItem && stopwatchSeconds > 0 && !stopProcessed) {
+    stopProcessed = true;
     const taskType = activeTaskItem.dataset.type; // 'class' or 'club'
     
     // Add time to the appropriate category
     taskTimeData[taskType] += stopwatchSeconds;
     localStorage.setItem(`taskTimeData_${taskType}`, taskTimeData[taskType].toString());
     
-    // Display time on the task item
-    const timeDisplayed = formatTimeForDisplay(stopwatchSeconds);
+    // Get current total seconds for this task
+    let totalTaskSeconds = parseInt(activeTaskItem.dataset.totalSeconds || '0');
+    totalTaskSeconds += stopwatchSeconds;
+    activeTaskItem.dataset.totalSeconds = totalTaskSeconds;
+    
+    // Display total cumulative time on the task item
+    const timeDisplayed = formatTimeForDisplay(totalTaskSeconds);
     
     // Find or create the time element in the task item
     let timeElement = activeTaskItem.querySelector('.time-spent');
@@ -145,11 +160,6 @@ function stopStopwatch() {
       timeElement.textContent = timeDisplayed;
       activeTaskItem.appendChild(timeElement);
     }
-    
-    // Update the cumulative time data attribute
-    let totalTaskSeconds = parseInt(activeTaskItem.dataset.totalSeconds || '0');
-    totalTaskSeconds += stopwatchSeconds;
-    activeTaskItem.dataset.totalSeconds = totalTaskSeconds;
     
     // Save task data
     saveTasksToLocalStorage();
@@ -179,6 +189,7 @@ function formatTimeForDisplay(seconds) {
 function resetStopwatch() {
   stopwatchRunning = false;
   stopwatchSeconds = 0;
+  stopProcessed = false;
   localStorage.setItem('stopwatch_running', 'false');
   localStorage.setItem('stopwatch_seconds', '0');
   localStorage.setItem('stopwatch_base_seconds', '0');
@@ -319,12 +330,22 @@ function handleTaskClick(e) {
   // Store active task ID in localStorage
   localStorage.setItem('active_task_id', this.id);
   
-  // Reset stopwatch for new task
-  resetStopwatch();
+  // Reset stopwatch for new task, but preserve the stopProcessed flag state
+  // We don't want to reset the stopwatch when just clicking on a new task
+  // Only reset the actual timer, not the time display
+  stopwatchRunning = false;
+  stopwatchSeconds = 0;
+  localStorage.setItem('stopwatch_running', 'false');
+  localStorage.setItem('stopwatch_seconds', '0');
+  localStorage.setItem('stopwatch_base_seconds', '0');
+  localStorage.setItem('stopwatch_startTime', '');
+  updateStopwatch();
+  stopwatchStartBtn.textContent = 'Start';
+  
+  // Reset the stopProcessed flag when switching tasks
+  stopProcessed = false;
 }
 
-// Find the handleTaskComplete function in your tracker.js file
-// Modify the function by adding the following code to fix styling issues
 function handleTaskComplete(e) {
   // Check if task is already marked as completed or being processed
   if (this.dataset.completed === 'true' || processingDoubleClick) {
