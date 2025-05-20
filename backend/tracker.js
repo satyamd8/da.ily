@@ -32,7 +32,7 @@ const stopwatchResetBtn = document.getElementById('stopwatch-reset');
 // Init stopwatch from localStorage
 let stopwatchSeconds = parseInt(localStorage.getItem('stopwatch_seconds') || '0');
 let stopwatchStartTime = localStorage.getItem('stopwatch_startTime') ? 
-                          parseInt(localStorage.getItem('stopwatch_startTime')) : null;
+      parseInt(localStorage.getItem('stopwatch_startTime')) : null;
 let activeTaskId = localStorage.getItem('active_task_id');
 
 function formatTime(totalSeconds) {
