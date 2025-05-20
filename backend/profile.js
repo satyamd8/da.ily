@@ -164,7 +164,7 @@ const resetButton = document.getElementById('reset-data');
 
 resetButton.addEventListener('click', () => {
     resetProfileData();  // Call the reset function when the button is clicked
-    alert("Profile data has been reset!");
+    alert("Your data has been reset!");
     location.reload();
 });
 
