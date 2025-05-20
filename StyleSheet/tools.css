@@ -22,17 +22,15 @@ button, input, select, option, textarea {
     font-family: inherit;
 }
 
-html {
-    height: 100%;
-}
-
 body {
     margin: 0;
     font-family: var(--quicksand);
+
     background-image: url("/img/Dawn.svg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+
     color: var(--current-primary);
 }
 
@@ -184,11 +182,9 @@ main {
     align-items: center;
 }
 
-
-
 .header {
     position: absolute;
-    top: 25px;
+    top: 50px;
 }
 
 .timer-section {
@@ -378,4 +374,54 @@ Tools Section
 .stage-buttons button:hover {
     transform: scale(1.05);
     background-color: var(--current-primary);
+}
+
+@media (max-width: 1350px) {
+    .timer-section {
+        height: 50vh;
+        margin-top: 50px;
+    }
+
+    .notes {
+        order: -1;
+        width: 100%;
+    }
+
+    .tools {
+        flex-direction: column;
+        height: auto;
+        gap: 30px;
+    }
+    .music {
+        width: 50%;
+    }
+    .yt {
+        width: 80%;
+        height: 300px;
+    }
+    #note {
+        width: 80%;
+    }
+}
+
+@media (max-width: 800px) {
+    .music {
+        width: 80%;
+    }
+}
+
+@media (max-width: 550px) {
+    .timer-section {
+        font-size: 32px;
+    }
+    .time-adjust {
+        font-size: 20px;
+    }
+    .clock {
+        font-size: 100px;
+    }
+
+    .yt {
+        height: auto;
+    }
 }

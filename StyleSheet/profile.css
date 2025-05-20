@@ -454,9 +454,11 @@ main {
   margin: 2rem 0;
 }
 
+
+
+
 @media (max-width: 900px) {
-  .profile-container:nth-of-type(1),
-  .profile-container:nth-of-type(2) {
+  .profile-container{
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
@@ -465,27 +467,36 @@ main {
   .profile-card,
   .basic-info,
   .taking-classes {
-    width: 100%;
+    width: 90%;
     max-width: 600px;
   }
 
   .stats-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .dashboard-section {
+    width: 95%;
+  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 630px) {
   .stats-grid {
     grid-template-columns: 1fr;
   }
 
-  .dashboard-section,
-  .profile-container,
-  main {
-    padding: 0.5rem;
-  }
-
   .page-title {
     font-size: 1.2rem;
+  }
+
+  .form-group,
+  .form-group label,
+  .form-group input,
+  .form-group select {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    padding: 5px;
   }
 }
